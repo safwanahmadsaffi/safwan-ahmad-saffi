@@ -85,9 +85,8 @@ const TopNavigation: React.FC = () => {
     }
   };
 
-  const navLinks = [
+const navLinks = [
     { name: 'Projects', id: 'projects' },
-    { name: 'About', id: 'about' },
     { name: 'Experience', id: 'experience' },
     { name: 'Skills', id: 'skills' },
     { name: 'Contact', id: 'contact' },
