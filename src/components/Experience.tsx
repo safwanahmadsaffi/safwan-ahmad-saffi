@@ -53,13 +53,7 @@ const Experience = () => {
         {/* Timeline */}
         <div className="relative space-y-8">
           {/* Center vertical line */}
-          <motion.div 
-            initial={{ scaleY: 0, opacity: 0 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent -translate-x-1/2 origin-top shadow-[0_0_8px_hsl(var(--primary)/0.5)]"
-          />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent -translate-x-1/2" />
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.title}
