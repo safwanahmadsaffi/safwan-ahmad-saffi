@@ -61,27 +61,51 @@ const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`flex ${exp.position === "left" ? "justify-start" : "justify-end"}`}
+              className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center"
             >
-              <div className={`w-full max-w-lg ${exp.position === "left" ? "mr-auto" : "ml-auto"}`}>
-                <div className="bg-card/50 border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300">
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <exp.icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <span className="text-xs text-muted-foreground">{exp.period}</span>
+              {/* Left side */}
+              <div className={exp.position === "left" ? "" : "invisible"}>
+                {exp.position === "left" && (
+                  <div className="bg-card/50 border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                          <exp.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <span className="text-xs text-muted-foreground">{exp.period}</span>
+                        </div>
                       </div>
                     </div>
+                    <h3 className="text-lg font-semibold mb-1">{exp.title}</h3>
+                    <p className="text-sm text-primary mb-3">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
                   </div>
+                )}
+              </div>
 
-                  <h3 className="text-lg font-semibold mb-1">{exp.title}</h3>
-                  <p className="text-sm text-primary mb-3">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {exp.description}
-                  </p>
-                </div>
+              {/* Center dot */}
+              <div className="w-3 h-3 rounded-full bg-primary border-2 border-background z-10" />
+
+              {/* Right side */}
+              <div className={exp.position === "right" ? "" : "invisible"}>
+                {exp.position === "right" && (
+                  <div className="bg-card/50 border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                          <exp.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <span className="text-xs text-muted-foreground">{exp.period}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-1">{exp.title}</h3>
+                    <p className="text-sm text-primary mb-3">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
