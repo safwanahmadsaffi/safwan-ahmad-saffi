@@ -51,7 +51,9 @@ const Experience = () => {
         </motion.div>
 
         {/* Timeline */}
-        <div className="space-y-8">
+        <div className="relative space-y-8">
+          {/* Center vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent -translate-x-1/2" />
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.title}
