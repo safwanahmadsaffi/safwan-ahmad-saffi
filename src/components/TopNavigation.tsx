@@ -1,5 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const AnimatedLogo = () => {
+  return (
+    <motion.div
+      className="relative w-10 h-10 cursor-pointer group"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {/* Animated gradient background */}
+      <motion.div
+        className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-secondary to-primary opacity-80"
+        animate={{
+          backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+        style={{ backgroundSize: '200% 200%' }}
+      />
+      
+      {/* Glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary blur-md opacity-50"
+        animate={{
+          opacity: [0.3, 0.6, 0.3],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      
+      {/* Logo text */}
+      <div className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden">
+        <motion.span
+          className="font-bold text-sm text-white font-mono tracking-tighter"
+          animate={{
+            textShadow: [
+              '0 0 4px rgba(255,255,255,0.5)',
+              '0 0 8px rgba(255,255,255,0.8)',
+              '0 0 4px rgba(255,255,255,0.5)',
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          SA
+        </motion.span>
+      </div>
+      
+      {/* Corner accents */}
+      <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white/30 rounded-tl-lg" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white/30 rounded-br-lg" />
+    </motion.div>
+  );
+};
 
 const TopNavigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,15 +96,13 @@ const TopNavigation: React.FC = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'glass-nav py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
+        {/* Animated SA Logo */}
         <div 
-          className="flex items-center gap-2 cursor-pointer" 
+          className="flex items-center gap-3 cursor-pointer" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="font-bold text-secondary-foreground font-mono">S</span>
-          </div>
-          <span className="font-bold text-lg tracking-tight hidden md:block">Safwan Ahmad Saffi</span>
+          <AnimatedLogo />
+          <span className="font-bold text-lg tracking-tight hidden md:block">Safwan Ahmad</span>
         </div>
 
         {/* Desktop Nav */}
