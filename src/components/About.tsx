@@ -8,25 +8,25 @@ const About = () => {
     {
       icon: Code2,
       title: "Problem Solver",
-      description: "Turning complex challenges into elegant AI solutions",
+      description: "Love tackling complex DSA problems and building AI solutions",
       gradient: "from-primary to-secondary",
     },
     {
       icon: Rocket,
-      title: "Fast Learner",
-      description: "From LLMs to 3D web, constantly exploring new tech",
+      title: "Hackathon Winner",
+      description: "Won National WordPress Hackathon, Top 10 National teams",
       gradient: "from-secondary to-primary",
     },
     {
       icon: Sparkles,
-      title: "Creative Builder",
-      description: "Blending engineering with design for magical products",
+      title: "Open Source",
+      description: "Active contributor to open-source projects worldwide",
       gradient: "from-primary/80 to-secondary/80",
     },
     {
       icon: Heart,
-      title: "Team Leader",
-      description: "Leading teams at Jazz Xlr8, mentoring worldwide",
+      title: "Community Leader",
+      description: "TCF Baghbaan volunteer, Aspire Leadership Program member",
       gradient: "from-secondary/80 to-primary/80",
     },
   ];
@@ -109,26 +109,26 @@ const About = () => {
             </h3>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a <span className="text-primary font-semibold">GenAI Engineer</span> and 
-              full-stack developer passionate about building intelligent systems that solve real problems.
+              I'm a <span className="text-primary font-semibold">Computer Scientist</span> from 
+              National Textile University, Faisalabad, passionate about AI, Machine Learning & Agentic AI.
             </p>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Currently leading teams at <span className="text-secondary font-semibold">Jazz Xlr8</span> while 
-              researching AI at Virtual University. I've won hackathons, built ML pipelines, and shipped 
-              products used by thousands.
+              Currently working on <span className="text-secondary font-semibold">LLM Projects</span> and 
+              diving deep into Data Science. I've participated in Shell, NASA, and 5x Intel Hackathons, 
+              winning the National WordPress Hackathon.
             </p>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              When I'm not coding, you'll find me competing in international hackathons (Shell, NASA, Intel), 
-              exploring new frameworks, or mentoring aspiring developers.
+              Competed in MIT Informatics Tournament, Calico by Berkeley, 2x Harvard CS50x Puzzle Day, 
+              2x Meta Hacker Cup. Selected for Stanford's Code-In-Place program.
             </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-3 pt-4">
-              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🎯 Product-minded</span>
-              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">⚡ Fast executor</span>
-              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🚀 Always learning</span>
+              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🎯 DSA Enthusiast</span>
+              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">⚡ GenAI Developer</span>
+              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🚀 Open Source Contributor</span>
             </div>
 
             {/* CTA */}
