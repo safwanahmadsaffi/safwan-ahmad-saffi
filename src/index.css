@@ -299,4 +299,62 @@
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
   .stagger-5 { animation-delay: 0.5s; }
+
+  /* Glitch Animations */
+  @keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+
+  @keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(-2px, 2px); }
+  }
+
+  .animate-glitch-1 {
+    animation: glitch-1 0.3s infinite;
+  }
+
+  .animate-glitch-2 {
+    animation: glitch-2 0.3s infinite;
+    animation-delay: 0.1s;
+  }
+
+  /* Scanlines Effect */
+  .scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(0, 246, 255, 0.03) 50%,
+      transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanlines 0.5s linear infinite;
+  }
+
+  @keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 4px; }
+  }
+
+  /* CRT Flicker */
+  .crt-flicker {
+    animation: crt-flicker 0.15s infinite;
+  }
+
+  @keyframes crt-flicker {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.02; background: hsl(var(--foreground)); }
+  }
+
+  /* Pulse Slow */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
