@@ -91,8 +91,8 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="absolute -bottom-6 -right-6 glass-card rounded-2xl p-4 hidden sm:block"
             >
-              <div className="text-3xl font-bold text-gradient">3+</div>
-              <div className="text-sm text-muted-foreground">Years Building AI</div>
+              <div className="text-3xl font-bold text-gradient">10+</div>
+              <div className="text-sm text-muted-foreground">Hackathons</div>
             </motion.div>
           </motion.div>
 
@@ -109,26 +109,26 @@ const About = () => {
             </h3>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a <span className="text-primary font-semibold">Computer Scientist</span> from 
-              National Textile University, Faisalabad, passionate about AI, Machine Learning & Agentic AI.
+              I'm a <span className="text-primary font-semibold">Computer Science Student</span> from 
+              National Textile University, Faisalabad. Passionate about GenAI, Data Science, Python development, hackathons, and competitive programming.
             </p>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Currently working on <span className="text-secondary font-semibold">LLM Projects</span> and 
-              diving deep into Data Science. I've participated in Shell, NASA, and 5x Intel Hackathons, 
-              winning the National WordPress Hackathon.
+              Experienced in <span className="text-secondary font-semibold">Generative AI applications</span>, 
+              API implementation, chatbot integration, web scraping, data analysis, modeling, and solving real-world problems.
             </p>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Competed in MIT Informatics Tournament, Calico by Berkeley, 2x Harvard CS50x Puzzle Day, 
-              2x Meta Hacker Cup. Selected for Stanford's Code-In-Place program.
+              <strong>Leadership:</strong> TCF Baghbaan volunteer helping underprivileged children in Pakistan. 
+              Aspire Leadership Program member exchanging ideas with international colleagues.
             </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-3 pt-4">
-              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🎯 DSA Enthusiast</span>
+              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🏃 Good Athletics</span>
               <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">⚡ GenAI Developer</span>
               <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🚀 Open Source Contributor</span>
+              <span className="px-4 py-2 rounded-full glass-card text-sm font-medium">🎯 DSA Enthusiast</span>
             </div>
 
             {/* CTA */}

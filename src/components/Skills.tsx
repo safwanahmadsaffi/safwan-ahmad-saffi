@@ -1,14 +1,19 @@
 import { motion } from "framer-motion";
 
 const skillsData = {
-  "Technical Skills": [
-    "Python", "JavaScript", "TypeScript", "Dart", "HTML", "CSS", 
-    "TailwindCSS", "React", "Flutter", "Firebase", "MongoDB", 
-    "Google Cloud", "Git", "Postman", "Figma", "Arduino",
-    "TensorFlow", "PyTorch", "LangChain", "Hugging Face", "OpenAI API",
-    "FastAPI", "Streamlit", "DSA", "Machine Learning", "Data Science"
+  "Programming": [
+    "Python", "C Programming", "TypeScript", "JavaScript", "Jupyter Notebook"
   ],
-  "Prompt Engineering": []
+  "Data Science": [
+    "Data Analysis", "Data Modeling", "EDA", "Statistics", "Web Scraping", "APIs"
+  ],
+  "AI/ML": [
+    "Generative AI", "Chatbots", "LangChain", "Hugging Face", "OpenAI API", "Tool Calling"
+  ],
+  "Other": [
+    "Database Systems (SQL)", "Data Structures & Algorithms", "Operating Systems", 
+    "Web Development", "Networking", "Compiler", "Git", "Object Oriented Programming"
+  ]
 };
 
 const containerVariants = {
@@ -47,24 +52,36 @@ const Skills = () => {
           </h2>
         </motion.div>
 
-        {/* Skills grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3"
-        >
-          {skillsData["Technical Skills"].map((skill, index) => (
-            <motion.span
-              key={skill}
-              variants={itemVariants}
-              className="px-4 py-2 text-sm font-medium bg-card/50 border border-border/50 text-foreground rounded-full hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-default"
+        {/* Skills by category */}
+        {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
+          <motion.div
+            key={category}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+            className="mb-8"
+          >
+            <h3 className="text-sm font-medium text-primary mb-4 text-center">{category}</h3>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="flex flex-wrap justify-center gap-3"
             >
-              {skill}
-            </motion.span>
-          ))}
-        </motion.div>
+              {skills.map((skill) => (
+                <motion.span
+                  key={skill}
+                  variants={itemVariants}
+                  className="px-4 py-2 text-sm font-medium bg-card/50 border border-border/50 text-foreground rounded-full hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-default"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </motion.div>
+          </motion.div>
+        ))}
 
         {/* Prompt Engineering label */}
         <motion.div
@@ -72,7 +89,7 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center mt-8"
+          className="flex justify-center mt-4"
         >
           <span className="px-4 py-2 text-sm font-medium bg-primary/10 border border-primary/20 text-primary rounded-full">
             Prompt Engineering
