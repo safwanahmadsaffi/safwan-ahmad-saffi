@@ -71,7 +71,7 @@ const Contact = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com/safwanahmadsaffi"
+                href="https://twitter.com/SafwanAhmadSaf1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-card/50 border border-border/50 flex items-center justify-center hover:border-primary/50 transition-all duration-300"

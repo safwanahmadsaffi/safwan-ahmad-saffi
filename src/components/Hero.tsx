@@ -36,9 +36,9 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
             >
-              <span className="text-foreground">I Build Intelligence</span>
+              <span className="text-foreground">Hi, I'm Safwan Ahmad</span>
               <br />
-              <span className="text-gradient-primary">That Interacts.</span>
+              <span className="text-gradient-primary">AI & ML Engineer.</span>
             </motion.h1>
 
             {/* Description */}
@@ -48,7 +48,7 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed"
             >
-              AI Engineer, Full-Stack Developer & Product Builder. I craft smart systems, chatbots, and interactive video experiences that solve real problems.
+              Computer Scientist specializing in AI, Machine Learning & Agentic AI. Currently working on LLM Projects and passionate about Data Science, DSA, and contributing to open-source.
             </motion.p>
 
             {/* CTA buttons */}

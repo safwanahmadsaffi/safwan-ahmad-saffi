@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 import { Star, GitFork, Users, FolderGit2 } from "lucide-react";
 
 const stats = [
-  { label: "Total Stars", value: "142", icon: Star, color: "text-yellow-400" },
-  { label: "Forks", value: "38", icon: GitFork, color: "text-purple-400" },
-  { label: "Followers", value: "85", icon: Users, color: "text-primary" },
-  { label: "Repositories", value: "24", icon: FolderGit2, color: "text-muted-foreground" },
+  { label: "Total Stars", value: "50+", icon: Star, color: "text-yellow-400" },
+  { label: "Forks", value: "20+", icon: GitFork, color: "text-purple-400" },
+  { label: "Followers", value: "28", icon: Users, color: "text-primary" },
+  { label: "Following", value: "64", icon: FolderGit2, color: "text-muted-foreground" },
 ];
 
 const languages = [
-  { name: "Python", percentage: 45, color: "#3572A5" },
-  { name: "TypeScript", percentage: 25, color: "#3178C6" },
-  { name: "JavaScript", percentage: 15, color: "#F7DF1E" },
+  { name: "Python", percentage: 50, color: "#3572A5" },
+  { name: "JavaScript", percentage: 20, color: "#F7DF1E" },
+  { name: "Dart", percentage: 15, color: "#00B4AB" },
   { name: "HTML/CSS", percentage: 10, color: "#E34F26" },
   { name: "Other", percentage: 5, color: "#6B7280" },
 ];

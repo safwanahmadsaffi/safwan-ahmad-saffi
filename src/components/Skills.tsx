@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 
 const skillsData = {
   "Technical Skills": [
-    "Python", "FastAPI", "TensorFlow", "PyTorch", "OpenAI API", "LangChain",
-    "Docker", "React", "TypeScript", "Streamlit", "PostgreSQL", "MongoDB",
-    "Google Cloud", "Hugging Face", "RAG", "TailwindCSS",
-    "Vercel", "Git"
+    "Python", "JavaScript", "TypeScript", "Dart", "HTML", "CSS", 
+    "TailwindCSS", "React", "Flutter", "Firebase", "MongoDB", 
+    "Google Cloud", "Git", "Postman", "Figma", "Arduino",
+    "TensorFlow", "PyTorch", "LangChain", "Hugging Face", "OpenAI API",
+    "FastAPI", "Streamlit", "DSA", "Machine Learning", "Data Science"
   ],
   "Prompt Engineering": []
 };
