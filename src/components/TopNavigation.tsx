@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Download } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Github, Linkedin, Mail, Download, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AnimatedLogo = () => {
@@ -92,6 +93,8 @@ const navLinks = [
     { name: 'Contact', id: 'contact' },
   ];
 
+  const achievementsLink = { name: 'Achievements', path: '/achievements' };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'glass-nav py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -115,6 +118,13 @@ const navLinks = [
               {link.name}
             </button>
           ))}
+          <Link
+            to={achievementsLink.path}
+            className="text-sm font-medium text-muted-foreground hover:text-secondary transition-colors flex items-center gap-1"
+          >
+            <Trophy className="w-4 h-4" />
+            {achievementsLink.name}
+          </Link>
         </div>
 
         {/* Socials & CTA */}
@@ -166,6 +176,14 @@ const navLinks = [
               {link.name}
             </button>
           ))}
+          <Link
+            to={achievementsLink.path}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-left text-lg font-medium text-muted-foreground hover:text-secondary transition-colors flex items-center gap-2"
+          >
+            <Trophy className="w-5 h-5" />
+            {achievementsLink.name}
+          </Link>
           <div className="flex gap-4 mt-4 pt-4 border-t border-foreground/10">
             <a href="https://github.com/safwanahmadsaffi" className="text-muted-foreground hover:text-foreground">
               <Github />
