@@ -36,9 +36,9 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
             >
-              <span className="text-foreground">Hi, I'm Safwan Ahmad</span>
+              <span className="text-foreground">Muhammad Safwan</span>
               <br />
-              <span className="text-gradient-primary">AI & ML Engineer.</span>
+              <span className="text-gradient-primary">Ahmad Saffi</span>
             </motion.h1>
 
             {/* Description */}
@@ -48,7 +48,7 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed"
             >
-              Computer Scientist specializing in AI, Machine Learning & Agentic AI. Currently working on LLM Projects and passionate about Data Science, DSA, and contributing to open-source.
+              Tech-savvy Computer Science student passionate about GenAI, Data Science & Python development. Experienced in generative AI, chatbot integration, web scraping, and solving real-world problems.
             </motion.p>
 
             {/* CTA buttons */}

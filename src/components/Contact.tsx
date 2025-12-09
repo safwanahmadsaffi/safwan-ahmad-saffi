@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Send, Github, Linkedin, Twitter, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -38,6 +38,27 @@ const Contact = () => {
             <p className="text-muted-foreground leading-relaxed">
               I'm always interested in hearing about new projects, collaborations, or opportunities. Whether you have a question or just want to say hi, feel free to reach out!
             </p>
+
+            {/* Location */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-primary" />
+              </div>
+              <span className="text-foreground">Faisalabad, Pakistan</span>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Phone className="w-5 h-5 text-primary" />
+              </div>
+              <a
+                href="tel:+923187426639"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                +92 318 7426639
+              </a>
+            </div>
 
             {/* Email */}
             <div className="flex items-center gap-3">
