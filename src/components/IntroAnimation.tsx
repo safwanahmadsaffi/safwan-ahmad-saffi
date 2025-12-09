@@ -5,11 +5,15 @@ interface IntroAnimationProps {
   onComplete: () => void;
 }
 
+const INTRO_STORAGE_KEY = 'portfolio_intro_viewed';
+
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [phase, setPhase] = useState(0);
   const [showContent, setShowContent] = useState(true);
   const audioContextRef = useRef<AudioContext | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const musicGainRef = useRef<GainNode | null>(null);
+  const musicOscillatorsRef = useRef<OscillatorNode[]>([]);
 
   // Work showcase items for mosaic
   const workItems = [
@@ -22,6 +26,88 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
     { icon: '⬢', label: 'Bot', color: '#2663FF' },
     { icon: '△', label: 'Dev', color: '#00F6FF' },
   ];
+
+  // Start ambient background music
+  const startBackgroundMusic = useCallback(() => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    const ctx = audioContextRef.current;
+    
+    // Create master gain for fade in/out
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0, ctx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 1.5); // Fade in
+    masterGain.connect(ctx.destination);
+    musicGainRef.current = masterGain;
+
+    // Create ambient pad sound (chord)
+    const notes = [130.81, 164.81, 196.00, 261.63]; // C3, E3, G3, C4 - C major chord
+    const oscillators: OscillatorNode[] = [];
+
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const oscGain = ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      
+      // Slight detuning for richness
+      osc.detune.setValueAtTime((i - 1.5) * 5, ctx.currentTime);
+      
+      oscGain.gain.setValueAtTime(0.3 / notes.length, ctx.currentTime);
+      
+      osc.connect(oscGain);
+      oscGain.connect(masterGain);
+      
+      osc.start(ctx.currentTime);
+      oscillators.push(osc);
+    });
+
+    // Add a low bass drone
+    const bassOsc = ctx.createOscillator();
+    const bassGain = ctx.createGain();
+    bassOsc.type = 'triangle';
+    bassOsc.frequency.setValueAtTime(65.41, ctx.currentTime); // C2
+    bassGain.gain.setValueAtTime(0.15, ctx.currentTime);
+    bassOsc.connect(bassGain);
+    bassGain.connect(masterGain);
+    bassOsc.start(ctx.currentTime);
+    oscillators.push(bassOsc);
+
+    // Add subtle high shimmer
+    const shimmerOsc = ctx.createOscillator();
+    const shimmerGain = ctx.createGain();
+    const shimmerFilter = ctx.createBiquadFilter();
+    shimmerOsc.type = 'sawtooth';
+    shimmerOsc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+    shimmerFilter.type = 'lowpass';
+    shimmerFilter.frequency.setValueAtTime(2000, ctx.currentTime);
+    shimmerGain.gain.setValueAtTime(0.03, ctx.currentTime);
+    shimmerOsc.connect(shimmerFilter);
+    shimmerFilter.connect(shimmerGain);
+    shimmerGain.connect(masterGain);
+    shimmerOsc.start(ctx.currentTime);
+    oscillators.push(shimmerOsc);
+
+    musicOscillatorsRef.current = oscillators;
+  }, []);
+
+  // Fade out and stop background music
+  const stopBackgroundMusic = useCallback(() => {
+    if (musicGainRef.current && audioContextRef.current) {
+      const ctx = audioContextRef.current;
+      musicGainRef.current.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.5);
+      
+      // Stop oscillators after fade out
+      setTimeout(() => {
+        musicOscillatorsRef.current.forEach(osc => {
+          try { osc.stop(); } catch (e) {}
+        });
+        musicOscillatorsRef.current = [];
+      }, 600);
+    }
+  }, []);
 
   // Enhanced beep sound generator with electronic feel
   const playBeep = useCallback((frequency: number, duration: number, type: OscillatorType = 'sine', volume = 0.15) => {
@@ -201,6 +287,9 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
   // Phase progression - 5 seconds total
   useEffect(() => {
+    // Start background music immediately
+    startBackgroundMusic();
+
     // Phase 0: Black screen (0-0.3s)
     // Phase 1: Name tracing (0.3-1.5s)
     // Phase 2: Convergence & explosion (1.5-2.5s)
@@ -230,15 +319,19 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
     const exitTimer = setTimeout(() => {
       playBeep(1760, 0.3, 'sine', 0.1);
+      stopBackgroundMusic();
       setShowContent(false);
+      // Mark intro as viewed in localStorage
+      localStorage.setItem(INTRO_STORAGE_KEY, 'true');
     }, 4700);
 
     const completeTimer = setTimeout(onComplete, 5200);
 
     return () => {
       [timer1, timer2, timer3, timer4, exitTimer, completeTimer].forEach(clearTimeout);
+      stopBackgroundMusic();
     };
-  }, [onComplete, playBeep, playExplosionSound]);
+  }, [onComplete, playBeep, playExplosionSound, startBackgroundMusic, stopBackgroundMusic]);
 
   return (
     <AnimatePresence>
@@ -576,6 +669,19 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
       )}
     </AnimatePresence>
   );
+};
+
+// Utility function to check if intro has been viewed
+export const hasViewedIntro = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem(INTRO_STORAGE_KEY) === 'true';
+};
+
+// Utility function to reset intro viewed state (for testing)
+export const resetIntroViewed = (): void => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(INTRO_STORAGE_KEY);
+  }
 };
 
 export default IntroAnimation;
