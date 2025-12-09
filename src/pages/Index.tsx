@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import BentoGrid from "@/components/BentoGrid";
@@ -6,10 +6,17 @@ import Skills from "@/components/Skills";
 import Achievements3D from "@/components/Achievements3D";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import IntroAnimation from "@/components/IntroAnimation";
+import IntroAnimation, { hasViewedIntro } from "@/components/IntroAnimation";
 
 const Index = () => {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
+
+  useEffect(() => {
+    // Only show intro for first-time visitors
+    if (!hasViewedIntro()) {
+      setShowIntro(true);
+    }
+  }, []);
 
   return (
     <>
