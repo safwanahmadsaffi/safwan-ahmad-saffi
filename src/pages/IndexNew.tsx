@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import BentoGrid from "@/components/BentoGrid";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
+import Achievements from "@/components/Achievements";
 import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -24,6 +25,10 @@ const IndexNew = () => {
         
         <section id="experience">
           <Experience />
+        </section>
+        
+        <section id="achievements">
+          <Achievements />
         </section>
         
         <LiveStats />
