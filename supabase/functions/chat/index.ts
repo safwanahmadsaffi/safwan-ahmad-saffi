@@ -5,13 +5,113 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Simple in-memory rate limiting (resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 10; // requests per window
+const RATE_WINDOW_MS = 60 * 1000; // 1 minute
+
+function getClientIP(req: Request): string {
+  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         req.headers.get('x-real-ip') || 
+         'unknown';
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW_MS });
+    return false;
+  }
+  
+  if (record.count >= RATE_LIMIT) {
+    return true;
+  }
+  
+  record.count++;
+  return false;
+}
+
+// Input validation
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_MESSAGES = 20;
+const VALID_ROLES = ['user', 'assistant'];
+
+interface ChatMessage {
+  role: string;
+  content: string;
+}
+
+function validateMessages(messages: unknown): { valid: boolean; error?: string; messages?: ChatMessage[] } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: 'Messages must be an array' };
+  }
+  
+  if (messages.length === 0) {
+    return { valid: false, error: 'Messages array cannot be empty' };
+  }
+  
+  if (messages.length > MAX_MESSAGES) {
+    return { valid: false, error: `Too many messages. Maximum is ${MAX_MESSAGES}` };
+  }
+  
+  const validatedMessages: ChatMessage[] = [];
+  
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    
+    if (!msg || typeof msg !== 'object') {
+      return { valid: false, error: `Message at index ${i} must be an object` };
+    }
+    
+    if (typeof msg.role !== 'string' || !VALID_ROLES.includes(msg.role)) {
+      return { valid: false, error: `Invalid role at index ${i}. Must be 'user' or 'assistant'` };
+    }
+    
+    if (typeof msg.content !== 'string') {
+      return { valid: false, error: `Content at index ${i} must be a string` };
+    }
+    
+    if (msg.content.length > MAX_MESSAGE_LENGTH) {
+      return { valid: false, error: `Message at index ${i} exceeds maximum length of ${MAX_MESSAGE_LENGTH} characters` };
+    }
+    
+    validatedMessages.push({ role: msg.role, content: msg.content });
+  }
+  
+  return { valid: true, messages: validatedMessages };
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages } = await req.json();
+    // Rate limiting check
+    const clientIP = getClientIP(req);
+    if (isRateLimited(clientIP)) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please wait a moment before trying again.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const body = await req.json();
+    
+    // Validate messages
+    const validation = validateMessages(body.messages);
+    if (!validation.valid) {
+      console.log(`Validation failed: ${validation.error}`);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    
+    const messages = validation.messages!;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
