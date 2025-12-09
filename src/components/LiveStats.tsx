@@ -1,12 +1,6 @@
 import { motion } from "framer-motion";
-import { Star, GitFork, Users, FolderGit2 } from "lucide-react";
-
-const stats = [
-  { label: "Total Stars", value: "50+", icon: Star, color: "text-yellow-400" },
-  { label: "Forks", value: "20+", icon: GitFork, color: "text-purple-400" },
-  { label: "Followers", value: "28", icon: Users, color: "text-primary" },
-  { label: "Following", value: "64", icon: FolderGit2, color: "text-muted-foreground" },
-];
+import { Star, GitFork, Users, FolderGit2, Loader2 } from "lucide-react";
+import { useGitHubStats } from "@/hooks/useGitHubStats";
 
 const languages = [
   { name: "Python", percentage: 50, color: "#3572A5" },
@@ -17,6 +11,15 @@ const languages = [
 ];
 
 const LiveStats = () => {
+  const { followers, following, publicRepos, totalStars, isLoading, error } = useGitHubStats("safwanahmadsaffi");
+
+  const stats = [
+    { label: "Total Stars", value: totalStars, icon: Star, color: "text-yellow-400" },
+    { label: "Repositories", value: publicRepos, icon: FolderGit2, color: "text-purple-400" },
+    { label: "Followers", value: followers, icon: Users, color: "text-primary" },
+    { label: "Following", value: following, icon: GitFork, color: "text-muted-foreground" },
+  ];
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-5xl mx-auto">
@@ -55,7 +58,11 @@ const LiveStats = () => {
               className="bg-card/50 border border-border/50 rounded-xl p-5 text-center"
             >
               <stat.icon className={`w-5 h-5 mx-auto mb-3 ${stat.color}`} />
-              <div className="text-3xl font-bold mb-1">{stat.value}</div>
+              {isLoading ? (
+                <Loader2 className="w-6 h-6 mx-auto mb-1 animate-spin text-muted-foreground" />
+              ) : (
+                <div className="text-3xl font-bold mb-1">{stat.value}</div>
+              )}
               <div className="text-sm text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}
