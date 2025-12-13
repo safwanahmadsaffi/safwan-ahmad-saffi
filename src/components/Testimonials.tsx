@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Quote, Star, Sparkles } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 interface Testimonial {
   quote: string;
@@ -31,7 +31,10 @@ const testimonials: Testimonial[] = [
 
 const Testimonials = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative section-cosmic">
+    <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(186_100%_50%_/_0.05)_0%,_transparent_70%)]" />
+      
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section header */}
         <motion.div
@@ -39,18 +42,16 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full cosmic-badge">
-            <Sparkles className="w-4 h-4 text-cosmic-purple" />
-            <span className="text-sm font-medium">Testimonials</span>
-            <Sparkles className="w-4 h-4 text-cosmic-pink" />
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            What People <span className="text-gradient-cosmic">Say</span>
+          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-secondary bg-secondary/10 rounded-full border border-secondary/20">
+            Social Proof
+          </span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="text-gradient">Testimonials</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Feedback from mentors and collaborators I've worked with
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            What mentors and collaborators say about working with me
           </p>
         </motion.div>
 
@@ -63,17 +64,17 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="glass-card rounded-2xl p-8 flex flex-col group"
+              className="glass-card rounded-2xl p-8 flex flex-col hover:border-secondary/30 transition-all duration-500 group card-hover"
             >
               {/* Quote icon */}
               <div className="mb-6">
-                <Quote className="h-10 w-10 text-cosmic-purple/50 group-hover:text-cosmic-purple transition-colors" />
+                <Quote className="h-10 w-10 text-secondary/50 group-hover:text-secondary transition-colors" />
               </div>
 
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-cosmic-orange text-cosmic-orange" />
+                  <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
                 ))}
               </div>
 
@@ -84,7 +85,7 @@ const Testimonials = () => {
 
               {/* Author info */}
               <div className="border-t border-border/50 pt-6">
-                <div className="font-semibold group-hover:text-cosmic-pink transition-colors">
+                <div className="font-semibold group-hover:text-secondary transition-colors">
                   {testimonial.author}
                 </div>
                 <div className="text-sm text-muted-foreground">
