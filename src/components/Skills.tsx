@@ -11,8 +11,8 @@ const skillsData = {
     "Generative AI", "Chatbots", "LangChain", "Hugging Face", "OpenAI API", "Tool Calling"
   ],
   "Other": [
-    "Database Systems (SQL)", "Data Structures & Algorithms", "Operating Systems", 
-    "Web Development", "Networking", "Compiler", "Git", "Object Oriented Programming"
+    "Database Systems (SQL)", "DSA", "Operating Systems", 
+    "Web Development", "Networking", "Git", "OOP"
   ]
 };
 
@@ -33,68 +33,63 @@ const itemVariants = {
 
 const Skills = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 block">
-            Technical Arsenal
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="text-foreground">Skills & </span>
-            <span className="text-gradient-primary">Technologies</span>
-          </h2>
+          <h2 className="section-title text-gradient-primary">Skills & Technologies</h2>
+          <p className="section-subtitle">Technologies I work with daily.</p>
         </motion.div>
 
         {/* Skills by category */}
-        {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
+        <div className="space-y-8">
+          {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+            >
+              <h3 className="text-sm font-semibold text-primary mb-4">{category}</h3>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex flex-wrap gap-2"
+              >
+                {skills.map((skill) => (
+                  <motion.span
+                    key={skill}
+                    variants={itemVariants}
+                    className="px-4 py-2 text-sm font-medium bg-card border border-border text-foreground rounded-full hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-default"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </motion.div>
+          ))}
+
+          {/* Prompt Engineering label */}
           <motion.div
-            key={category}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-            className="mb-8"
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="text-sm font-medium text-primary mb-4 text-center">{category}</h3>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-3"
-            >
-              {skills.map((skill) => (
-                <motion.span
-                  key={skill}
-                  variants={itemVariants}
-                  className="px-4 py-2 text-sm font-medium bg-card/50 border border-border/50 text-foreground rounded-full hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-default"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </motion.div>
+            <span className="px-4 py-2 text-sm font-medium bg-primary/10 border border-primary/30 text-primary rounded-full inline-block">
+              Prompt Engineering
+            </span>
           </motion.div>
-        ))}
-
-        {/* Prompt Engineering label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center mt-4"
-        >
-          <span className="px-4 py-2 text-sm font-medium bg-primary/10 border border-primary/20 text-primary rounded-full">
-            Prompt Engineering
-          </span>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

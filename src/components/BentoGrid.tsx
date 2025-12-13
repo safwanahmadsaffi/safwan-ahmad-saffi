@@ -1,17 +1,14 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ExternalLink, Github, Video, Bot, TrendingUp, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ExternalLink, TrendingUp, Bot, Video, MessageSquare } from "lucide-react";
 
 interface Project {
   id: string;
   title: string;
   description: string;
-  techStack: string[];
-  icon: React.ComponentType<{ className?: string }>;
+  techStack: { name: string; icon?: string }[];
+  image?: string;
   github?: string;
   demo?: string;
-  iconColor: string;
 }
 
 const projects: Project[] = [
@@ -19,37 +16,44 @@ const projects: Project[] = [
     id: "shell-ai-hackathon",
     title: "Shell.ai Hackathon 2025",
     description: "Addresses Shell.ai Hackathon 2025 challenge to predict 10 fuel blend properties from 55 input features. Optimizes sustainable aviation fuel through mathematical models and prototypes.",
-    techStack: ["Python", "ML", "Data Science", "Optimization"],
-    icon: TrendingUp,
+    techStack: [
+      { name: "Python" },
+      { name: "ML" },
+      { name: "Data Science" },
+    ],
     github: "https://github.com/safwanahmadsaffi/Shell.ai-Hackathon-2025",
-    iconColor: "text-primary",
   },
   {
     id: "datavue",
     title: "DataVue",
     description: "Revolutionary ecosystem for data science learning with AI-powered EDA, dynamic visualizations, and 24/7 AI assistant for learning and applying data science.",
-    techStack: ["Python", "AI", "Visualization", "EDA"],
-    icon: Bot,
+    techStack: [
+      { name: "Python" },
+      { name: "AI" },
+      { name: "Visualization" },
+    ],
     github: "https://github.com/safwanahmadsaffi/DataVue",
-    iconColor: "text-secondary",
   },
   {
     id: "infraseek360",
     title: "InfraSeek360",
     description: "Infrastructure-related search or analysis tool built with TypeScript for comprehensive infrastructure monitoring and insights.",
-    techStack: ["TypeScript", "Infrastructure", "Analysis"],
-    icon: Video,
+    techStack: [
+      { name: "TypeScript" },
+      { name: "Infrastructure" },
+    ],
     github: "https://github.com/safwanahmadsaffi/InfraSeek360",
-    iconColor: "text-primary",
   },
   {
     id: "nextedge-hackathon",
     title: "NextEdge LabLab Hackathon",
     description: "Toolcalling chatbot that interacts with database info, answers questions without hallucinations. Developed for NextEdge-LabLab Hackathon.",
-    techStack: ["Jupyter Notebook", "LLM", "RAG", "Chatbot"],
-    icon: MessageSquare,
+    techStack: [
+      { name: "Jupyter" },
+      { name: "LLM" },
+      { name: "RAG" },
+    ],
     github: "https://github.com/safwanahmadsaffi/NextEdge-LabLab-Hackathon",
-    iconColor: "text-secondary",
   },
 ];
 
@@ -70,27 +74,21 @@ const itemVariants = {
 
 const BentoGrid = () => {
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12"
         >
-          <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 block">
-            Featured Work
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold">
-            <span className="text-foreground">Projects that push</span>
-            <br />
-            <span className="text-gradient-primary">boundaries</span>
-          </h2>
+          <h2 className="section-title text-gradient-primary">What I've been working on</h2>
+          <p className="section-subtitle">Highlighted Projects</p>
         </motion.div>
 
-        {/* Bento grid layout */}
+        {/* Projects grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -98,19 +96,14 @@ const BentoGrid = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.article
               key={project.id}
               variants={itemVariants}
-              className="group relative rounded-2xl p-6 bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-300"
+              className="group relative rounded-2xl p-6 bg-card border border-border hover:border-primary/30 transition-all duration-300 card-hover"
             >
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center mb-5 ${project.iconColor}`}>
-                <project.icon className="h-6 w-6" />
-              </div>
-
               {/* Title */}
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
 
@@ -120,40 +113,27 @@ const BentoGrid = () => {
               </p>
 
               {/* Tech stack */}
-              {project.techStack.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-medium bg-muted/50 text-muted-foreground rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech.name}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-muted/50 text-muted-foreground rounded-full"
+                  >
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-4 mt-auto">
-                {project.demo && project.demo !== "#" && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
-                  >
-                    View Demo
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                )}
+              <div className="flex items-center gap-4">
                 {project.github && (
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
                   >
-                    GitHub
+                    View Project
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 )}
