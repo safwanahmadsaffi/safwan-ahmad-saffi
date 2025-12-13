@@ -1,39 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Trophy } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Github, Linkedin, Mail, Download, Trophy } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const AnimatedLogo = () => {
   return (
     <motion.div
-      className="relative flex items-center gap-3 cursor-pointer"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      className="relative w-10 h-10 cursor-pointer group"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
     >
-      {/* Logo icon */}
-      <div className="relative w-10 h-10">
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-          <svg 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            className="w-6 h-6"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path 
-              d="M12 4C8 4 4 8 4 12s4 8 8 8 8-4 8-8-4-8-8-8z" 
-              className="text-primary-foreground"
-            />
-            <path 
-              d="M8 12c0-2 2-4 4-4s4 2 4 4-2 4-4 4" 
-              className="text-primary-foreground"
-            />
-          </svg>
-        </div>
+      {/* Animated gradient background */}
+      <motion.div
+        className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-secondary to-primary opacity-80"
+        animate={{
+          backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+        style={{ backgroundSize: '200% 200%' }}
+      />
+      
+      {/* Glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary blur-md opacity-50"
+        animate={{
+          opacity: [0.3, 0.6, 0.3],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      
+      {/* Logo text */}
+      <div className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden">
+        <motion.span
+          className="font-bold text-sm text-white font-mono tracking-tighter"
+          animate={{
+            textShadow: [
+              '0 0 4px rgba(255,255,255,0.5)',
+              '0 0 8px rgba(255,255,255,0.8)',
+              '0 0 4px rgba(255,255,255,0.5)',
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          SA
+        </motion.span>
       </div>
       
-      {/* Name */}
-      <span className="font-bold text-lg tracking-tight hidden sm:block">Safwan Ahmad</span>
+      {/* Corner accents */}
+      <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white/30 rounded-tl-lg" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white/30 rounded-br-lg" />
     </motion.div>
   );
 };
@@ -58,99 +86,126 @@ const TopNavigation: React.FC = () => {
     }
   };
 
-  const navLinks = [
-    { name: 'About', id: 'about' },
+const navLinks = [
     { name: 'Projects', id: 'projects' },
-    { name: 'Blogs', id: 'experience' },
+    { name: 'Experience', id: 'experience' },
+    { name: 'Skills', id: 'skills' },
     { name: 'Contact', id: 'contact' },
   ];
 
+  const achievementsLink = { name: 'Achievements', path: '/achievements' };
+
   return (
-    <>
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-3xl">
-        <motion.div
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="nav-floating rounded-full px-6 py-3 flex justify-between items-center"
+    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'glass-nav py-4' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        {/* Animated SA Logo */}
+        <div 
+          className="flex items-center gap-3 cursor-pointer" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          {/* Logo */}
-          <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <AnimatedLogo />
-          </div>
+          <AnimatedLogo />
+          <span className="font-bold text-lg tracking-tight hidden md:block">Safwan Ahmad</span>
+        </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Right side actions */}
-          <div className="hidden md:flex items-center gap-2">
-            <Link
-              to="/achievements"
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
-              title="Achievements"
-            >
-              <Trophy className="w-5 h-5" />
-            </Link>
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
             <button
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
-              title="Toggle theme"
+              key={link.name}
+              onClick={() => scrollToSection(link.id)}
+              className="text-sm font-medium text-muted-foreground hover:text-secondary transition-colors"
             >
-              <Sun className="w-5 h-5" />
+              {link.name}
             </button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          ))}
+          <Link
+            to={achievementsLink.path}
+            className="text-sm font-medium text-muted-foreground hover:text-secondary transition-colors flex items-center gap-1"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </motion.div>
-      </nav>
+            <Trophy className="w-4 h-4" />
+            {achievementsLink.name}
+          </Link>
+        </div>
+
+        {/* Socials & CTA */}
+        <div className="hidden md:flex items-center gap-4">
+          <a 
+            href="https://github.com/safwanahmadsaffi" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Github size={20} />
+          </a>
+          <a 
+            href="https://linkedin.com/in/safwanahmadsaffi" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Linkedin size={20} />
+          </a>
+          <a
+            href="/Safwan_Ahmad_CV.pdf"
+            download
+            className="px-5 py-2 rounded-full border border-foreground/10 hover:bg-primary/10 hover:border-primary hover:text-secondary transition-all duration-300 text-sm font-medium flex items-center gap-2"
+          >
+            <Download size={16} />
+            CV
+          </a>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-foreground"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X /> : <Menu />}
+        </button>
+      </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-3xl nav-floating rounded-2xl p-6"
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 w-full glass-nav border-t border-foreground/10 p-6 flex flex-col gap-4 md:hidden">
+          {navLinks.map((link) => (
+            <button
+              key={link.name}
+              onClick={() => scrollToSection(link.id)}
+              className="text-left text-lg font-medium text-muted-foreground hover:text-secondary transition-colors"
+            >
+              {link.name}
+            </button>
+          ))}
+          <Link
+            to={achievementsLink.path}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-left text-lg font-medium text-muted-foreground hover:text-secondary transition-colors flex items-center gap-2"
           >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  {link.name}
-                </button>
-              ))}
-              <Link
-                to="/achievements"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center gap-2"
-              >
-                <Trophy className="w-5 h-5" />
-                Achievements
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            <Trophy className="w-5 h-5" />
+            {achievementsLink.name}
+          </Link>
+          <div className="flex gap-4 mt-4 pt-4 border-t border-foreground/10">
+            <a href="https://github.com/safwanahmadsaffi" className="text-muted-foreground hover:text-foreground">
+              <Github />
+            </a>
+            <a href="https://linkedin.com/in/safwanahmadsaffi" className="text-muted-foreground hover:text-foreground">
+              <Linkedin />
+            </a>
+            <a href="mailto:safwanahmadsaffi@gmail.com" className="text-muted-foreground hover:text-foreground">
+              <Mail />
+            </a>
+          </div>
+          <a
+            href="/Safwan_Ahmad_CV.pdf"
+            download
+            className="mt-2 px-5 py-3 rounded-full bg-primary text-primary-foreground text-center font-medium flex items-center justify-center gap-2"
+          >
+            <Download size={16} />
+            Download CV
+          </a>
+        </div>
+      )}
+    </nav>
   );
 };
 
