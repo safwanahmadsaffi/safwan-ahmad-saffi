@@ -1,155 +1,153 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, Bot, MessageSquare, Video, Settings, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Rocket, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 relative pt-20">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(220_100%_57%_/_0.12)_0%,_transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_hsl(186_100%_50%_/_0.08)_0%,_transparent_50%)]" />
+      {/* Star field background */}
+      <div className="stars-bg opacity-40" />
+      
+      {/* Cosmic gradient overlays */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_rgba(139,92,246,0.15)_0%,_transparent_50%)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-[radial-gradient(ellipse_at_bottom,_rgba(236,72,153,0.1)_0%,_transparent_50%)]" />
+        <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(56,189,248,0.08)_0%,_transparent_60%)]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left side - Text content */}
-          <div className="order-2 lg:order-1">
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary/10 border border-primary/20"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              <span className="text-sm font-medium text-primary">Available for New Projects</span>
-            </motion.div>
+      {/* Floating planets */}
+      <motion.div
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 right-[10%] w-24 h-24 planet planet-orange hidden lg:block"
+      />
+      <motion.div
+        animate={{ y: [10, -15, 10] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-32 right-[25%] w-8 h-8 planet planet-blue hidden lg:block"
+      />
+      <motion.div
+        animate={{ y: [-5, 15, -5] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-48 right-[15%] w-4 h-4 planet planet-pink hidden lg:block"
+      />
+      <motion.div
+        animate={{ y: [8, -8, 8] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-40 left-[5%] w-6 h-6 planet planet-blue hidden lg:block"
+      />
 
-            {/* Main headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
-            >
-              <span className="text-foreground">Muhammad Safwan</span>
-              <br />
-              <span className="text-gradient-primary">Ahmad Saffi</span>
-            </motion.h1>
+      <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
+        {/* Status badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 mb-8 rounded-full cosmic-badge"
+        >
+          <Sparkles className="w-4 h-4 text-cosmic-purple" />
+          <span className="text-sm font-medium tracking-wide uppercase">AI Product Developer</span>
+          <Sparkles className="w-4 h-4 text-cosmic-pink" />
+        </motion.div>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed"
-            >
-              Tech-savvy Computer Science student passionate about GenAI, Data Science & Python development. Experienced in generative AI, chatbot integration, web scraping, and solving real-world problems.
-            </motion.p>
+        {/* Main headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[1.1] tracking-tight"
+        >
+          <span className="text-gradient-pink">Safwan</span>
+          <br />
+          <span className="text-foreground">Ahmad</span>
+        </motion.h1>
 
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 mb-12"
-            >
-              <Button 
-                size="lg" 
-                className="group px-6 py-6 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                See My Work
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="px-6 py-6 text-base font-semibold border border-border/50 hover:bg-muted/30 rounded-xl"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Connect with Me
-              </Button>
-            </motion.div>
-          </div>
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          Crafting digital experiences across the universe of{" "}
+          <span className="text-foreground font-medium">GenAI</span>,{" "}
+          <span className="text-foreground font-medium">Data Science</span>, and{" "}
+          <span className="text-foreground font-medium">Python Development</span>{" "}
+          with a passion for solving real-world problems.
+        </motion.p>
 
-          {/* Right side - Animated illustration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 relative"
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="flex flex-wrap items-center justify-center gap-4"
+        >
+          <Button 
+            size="lg" 
+            className="group px-8 py-6 text-base font-semibold btn-cosmic rounded-full"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <div className="relative w-full max-w-md mx-auto aspect-square">
-              {/* Central element */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                  className="w-64 h-64 rounded-full border border-primary/20"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                  className="absolute w-48 h-48 rounded-full border border-secondary/20"
-                />
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute w-32 h-32 rounded-full border border-primary/30"
-                />
-              </div>
+            <Rocket className="mr-2 h-5 w-5" />
+            Explore My Universe
+          </Button>
+          <Button 
+            size="lg" 
+            className="px-8 py-6 text-base font-medium btn-cosmic-outline rounded-full"
+            onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            View Services
+          </Button>
+          <Button 
+            size="lg" 
+            className="px-8 py-6 text-base font-medium btn-cosmic-outline rounded-full"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Connect with Me
+          </Button>
+        </motion.div>
 
-              {/* Central icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center backdrop-blur-sm">
-                  <Settings className="w-10 h-10 text-secondary" />
-                </div>
-              </div>
-
-              {/* Floating icons */}
-              <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-8 right-8 w-12 h-12 rounded-xl bg-card/80 border border-border/50 flex items-center justify-center backdrop-blur-sm"
-              >
-                <Bot className="w-6 h-6 text-primary" />
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-0 w-12 h-12 rounded-xl bg-card/80 border border-border/50 flex items-center justify-center backdrop-blur-sm"
-              >
-                <MessageSquare className="w-6 h-6 text-secondary" />
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [-8, 12, -8] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-1/4 right-0 w-12 h-12 rounded-xl bg-card/80 border border-border/50 flex items-center justify-center backdrop-blur-sm"
-              >
-                <Sparkles className="w-6 h-6 text-primary" />
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [8, -12, 8] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-8 left-8 w-12 h-12 rounded-xl bg-card/80 border border-border/50 flex items-center justify-center backdrop-blur-sm"
-              >
-                <Zap className="w-6 h-6 text-secondary" />
-              </motion.div>
-
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl" />
-            </div>
-          </motion.div>
-        </div>
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 mt-16 pt-16 border-t border-border/30"
+        >
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl font-bold text-gradient-cosmic">10+</div>
+            <div className="text-sm text-muted-foreground mt-1">Projects Completed</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl font-bold text-gradient-cosmic">5+</div>
+            <div className="text-sm text-muted-foreground mt-1">Hackathons</div>
+          </div>
+          <div className="text-3xl sm:text-4xl font-bold text-gradient-cosmic text-center">
+            <div>3+</div>
+            <div className="text-sm text-muted-foreground mt-1 font-normal">Years Experience</div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-1.5 h-1.5 bg-cosmic-purple rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
