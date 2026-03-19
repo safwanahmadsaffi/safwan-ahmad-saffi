@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ExternalLink, Github, Video, Bot, TrendingUp, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Bot, TrendingUp, MessageSquare, Video } from "lucide-react";
 
 interface Project {
   id: string;
@@ -57,15 +55,13 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const BentoGrid = () => {
@@ -78,19 +74,18 @@ const BentoGrid = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 block">
-            Featured Work
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold">
-            <span className="text-foreground">Projects that push</span>
-            <br />
-            <span className="text-gradient-primary">boundaries</span>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <span className="text-foreground">Featured </span>
+            <span className="text-gradient-primary">Projects</span>
           </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            A showcase of my technical projects and innovations
+          </p>
         </motion.div>
 
-        {/* Bento grid layout */}
+        {/* Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -98,21 +93,23 @@ const BentoGrid = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.article
               key={project.id}
               variants={itemVariants}
-              className="group relative rounded-2xl p-6 bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-300"
+              className="group relative rounded-2xl p-6 bg-card/40 border border-border/40 hover:border-primary/40 hover:bg-card/60 transition-all duration-500 backdrop-blur-sm card-hover"
             >
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center mb-5 ${project.iconColor}`}>
-                <project.icon className="h-6 w-6" />
+              {/* Icon & Title row */}
+              <div className="flex items-start gap-4 mb-4">
+                <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center flex-shrink-0 ${project.iconColor}`}>
+                  <project.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
               </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
 
               {/* Description */}
               <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-3">
@@ -120,18 +117,16 @@ const BentoGrid = () => {
               </p>
 
               {/* Tech stack */}
-              {project.techStack.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-medium bg-muted/50 text-muted-foreground rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary/80 rounded-full border border-primary/20"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
               {/* Actions */}
               <div className="flex items-center gap-4 mt-auto">
@@ -153,7 +148,8 @@ const BentoGrid = () => {
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
                   >
-                    GitHub
+                    <Github className="h-4 w-4 mr-1" />
+                    View Project
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 )}
