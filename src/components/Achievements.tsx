@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
-interface Competition {
+interface Achievement {
   title: string;
   placement: string;
   year: string;
@@ -13,165 +12,122 @@ interface Competition {
   link?: string;
 }
 
-const competitions: Competition[] = [
+const achievements: Achievement[] = [
   {
     title: "National WordPress Hackathon",
     placement: "Winner",
     year: "2024",
-    description: "Won the national WordPress hackathon competing against teams from across the country with an innovative web solution.",
+    description: "Won the national WordPress hackathon competing against teams from across the country.",
     badges: ["1st Place", "National"],
     link: "https://github.com/safwanahmadsaffi",
-  },
-  {
-    title: "National Hackathon",
-    placement: "Top 10 Teams",
-    year: "2024",
-    description: "Secured position among the top 10 teams in a national-level hackathon, demonstrating strong problem-solving skills.",
-    badges: ["Top 10", "National"],
-    link: "https://github.com/safwanahmadsaffi",
-  },
-  {
-    title: "Shell.ai Hackathon 2025",
-    placement: "Participant",
-    year: "2025",
-    description: "Addressed Shell.ai challenge to predict fuel blend properties from input features. Optimized sustainable aviation fuel through mathematical models.",
-    badges: ["International", "AI/ML"],
-    link: "https://github.com/safwanahmadsaffi/Shell.ai-Hackathon-2025",
   },
   {
     title: "Stanford Code-In-Place",
     placement: "Selected Student",
     year: "2024",
-    description: "Selected as a student for Code-In-Place program at Stanford University, one of the most prestigious coding programs globally.",
+    description: "Selected for Stanford University's prestigious Code-In-Place program.",
     badges: ["Stanford", "Selected"],
+  },
+  {
+    title: "Shell.ai Hackathon 2025",
+    placement: "Participant",
+    year: "2025",
+    description: "Predicted fuel blend properties and optimized sustainable aviation fuel models.",
+    badges: ["International", "AI/ML"],
+    link: "https://github.com/safwanahmadsaffi/Shell.ai-Hackathon-2025",
+  },
+  {
+    title: "Judge & SME Lead",
+    placement: "Leadership Role",
+    year: "2024",
+    description: "Supervised 15 staff members and evaluated projects of 150+ teams.",
+    badges: ["15 Staff", "150+ Teams"],
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 const Achievements = () => {
   return (
-    <section id="achievements" className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,_hsl(260_80%_50%_/_0.08)_0%,_transparent_70%)] blur-3xl" />
-
-      <div className="max-w-4xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <section id="achievements" className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-2xl sm:text-3xl font-semibold text-center mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="text-foreground">Competitions & </span>
-            <span className="text-gradient-primary">Awards</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My prized achievements through various hackathons and competitions
-          </p>
-        </motion.div>
+          <span className="text-foreground">Competitions & </span>
+          <span className="text-gradient-primary">Awards</span>
+        </motion.h2>
+
+        <div className="space-y-4">
+          {achievements.map((item, i) => {
+            const isHighlight =
+              item.placement.toLowerCase().includes("winner") ||
+              item.placement.toLowerCase().includes("selected");
+
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="glass-card rounded-xl p-5 hover:border-primary/20 transition-all duration-300 group"
+              >
+                <div className="flex items-start justify-between mb-1">
+                  <h3 className="text-sm font-semibold group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  <span className="text-xs text-muted-foreground ml-4 flex-shrink-0">{item.year}</span>
+                </div>
+
+                <p className={`text-xs font-semibold mb-2 ${isHighlight ? "text-yellow-400/90" : "text-primary/70"}`}>
+                  {item.placement}
+                </p>
+
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{item.description}</p>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className={`px-2.5 py-0.5 text-[11px] font-medium rounded-full ${
+                          badge.includes("1st") || badge.includes("Selected")
+                            ? "bg-yellow-400/10 text-yellow-400/80 border border-yellow-400/20"
+                            : "glass text-muted-foreground"
+                        }`}
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                  {item.link && (
+                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="space-y-5"
-        >
-          {competitions.map((comp) => (
-            <CompetitionCard key={comp.title} competition={comp} />
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-10"
+          className="text-center mt-8"
         >
           <Link to="/achievements">
-            <Button variant="outline" className="group rounded-full px-6">
-              View All Achievements
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Button variant="outline" className="group rounded-full px-6 glass-card border-border/40 text-sm">
+              View All
+              <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </motion.div>
       </div>
     </section>
-  );
-};
-
-const CompetitionCard = ({ competition }: { competition: Competition }) => {
-  const isWinner = competition.placement.toLowerCase().includes("winner") || 
-    competition.placement.toLowerCase().includes("1st") ||
-    competition.placement.toLowerCase().includes("selected");
-
-  return (
-    <motion.div
-      variants={itemVariants}
-      className="bg-card/40 border border-border/40 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm group"
-    >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1">
-          <div className="flex items-start justify-between mb-1">
-            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-              {competition.title}
-            </h3>
-            <span className="text-sm text-muted-foreground flex-shrink-0 ml-4">
-              {competition.year}
-            </span>
-          </div>
-
-          <p className={`text-sm font-semibold mb-3 ${isWinner ? "text-yellow-400" : "text-secondary"}`}>
-            {competition.placement}
-          </p>
-
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            {competition.description}
-          </p>
-
-          <div className="flex items-center justify-between">
-            <div className="flex flex-wrap gap-2">
-              {competition.badges.map((badge) => (
-                <span
-                  key={badge}
-                  className={`px-3 py-1 text-xs font-medium rounded-full ${
-                    badge.includes("1st") || badge.includes("Winner") || badge.includes("Selected")
-                      ? "bg-yellow-400/15 text-yellow-400 border border-yellow-400/30"
-                      : "bg-muted/50 text-muted-foreground border border-border/50"
-                  }`}
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-
-            {competition.link && (
-              <a
-                href={competition.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 };
 

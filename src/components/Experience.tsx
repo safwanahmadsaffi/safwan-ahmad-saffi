@@ -1,89 +1,68 @@
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
 
+const experiences = [
+  {
+    title: "GenAI Developer",
+    company: "Vast Art, Faisalabad",
+    period: "Jun 2024 – Jul 2024",
+    description: "Built generative AI applications, integrated APIs and chatbots. Automated web data collection via scraping.",
+  },
+  {
+    title: "Data Science Intern",
+    company: "Snappy Sol, Faisalabad",
+    period: "Jun 2023 – Aug 2023",
+    description: "Python development, data analysis & modeling, strategic issue analysis and data-driven solutions.",
+  },
+  {
+    title: "Teacher Assistant",
+    company: "Kips Academy",
+    period: "Jul 2022 – Aug 2022",
+    description: "Management staff member. Coordinated class timetable, maintained discipline, assisted teaching.",
+  },
+];
+
+const education = {
+  title: "B.S. Computer Science",
+  company: "National Textile University",
+  period: "Oct 2022 – Jul 2026",
+  description: "DSA, OOP, Database Systems, OS, Compiler Design, Web Dev, Networking, Statistics.",
+};
+
 const Experience = () => {
-  const experiences = [
-    {
-      title: "GenAI Developer",
-      company: "Vast Art, Faisalabad",
-      period: "June 2024 - July 2024",
-      description: "Experience with generative AI applications, API implementation and Chatbot integration. Automated web data collection via web scraping and APIs. Worked and solved real-world problems.",
-      icon: Briefcase,
-    },
-    {
-      title: "Data Science Intern",
-      company: "Snappy Sol, Faisalabad",
-      period: "June 2023 - August 2023",
-      description: "Experienced in Python development, strategic issue analysis, data analysis expertise, data modeling expertise and data analysis techniques.",
-      icon: Briefcase,
-    },
-    {
-      title: "Teacher Assistant",
-      company: "Kips Academy",
-      period: "July 2022 - August 2022",
-      description: "Member of Management Staff of Educational Institute. Acted as Teacher Assistant, managed class timetable and discipline.",
-      icon: Briefcase,
-    },
-  ];
-
-  const education = {
-    title: "B.S. in Computer Science",
-    company: "National Textile University",
-    period: "October 2022 - July 2026",
-    description: "Coursework: C++ Programming, OOP, Database Systems, DSA, Operating Systems, Compiler, Web Development, Networking, Statistics, Physics for Computing.",
-    icon: GraduationCap,
-  };
-
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,_hsl(260_80%_50%_/_0.1)_0%,_transparent_70%)] blur-3xl" />
-
-      <div className="max-w-4xl mx-auto relative z-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-2xl sm:text-3xl font-semibold text-center mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="text-foreground">Work </span>
-            <span className="text-gradient-primary">Experience</span>
-          </h2>
-        </motion.div>
+          <span className="text-foreground">Work </span>
+          <span className="text-gradient-primary">Experience</span>
+        </motion.h2>
 
-        {/* Experience timeline */}
-        <div className="relative space-y-0">
-          {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-secondary/30 to-transparent" />
+        {/* Timeline */}
+        <div className="relative space-y-6">
+          <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border/60" />
 
-          {experiences.map((exp, index) => (
+          {experiences.map((exp, i) => (
             <motion.div
               key={exp.title}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative pl-16 pb-10"
+              transition={{ delay: i * 0.08 }}
+              className="relative pl-12"
             >
-              {/* Timeline dot */}
-              <div className="absolute left-4 top-1 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-              </div>
-
-              <div className="bg-card/40 border border-border/40 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <exp.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    {exp.period}
-                  </span>
+              <div className="absolute left-[14px] top-2 w-[11px] h-[11px] rounded-full border-2 border-primary/60 bg-background" />
+              <div className="glass-card rounded-xl p-5">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="text-sm font-semibold text-foreground">{exp.title}</h3>
+                  <span className="text-xs text-muted-foreground">{exp.period}</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-1">{exp.title}</h3>
-                <p className="text-sm text-secondary mb-3">{exp.company}</p>
+                <p className="text-xs text-primary/80 mb-2">{exp.company}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
               </div>
             </motion.div>
@@ -92,27 +71,22 @@ const Experience = () => {
 
         {/* Education */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16"
+          className="mt-14"
         >
-          <h3 className="text-2xl font-bold mb-8 text-center">
-            <span className="text-foreground">Education</span>
-          </h3>
-          <div className="bg-card/40 border border-border/40 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 backdrop-blur-sm">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-primary" />
+          <h3 className="text-lg font-semibold text-center mb-6 text-foreground">Education</h3>
+          <div className="glass-card rounded-xl p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-9 h-9 rounded-lg glass flex items-center justify-center">
+                <GraduationCap className="w-4 h-4 text-primary" />
               </div>
-              <div>
-                <h4 className="text-lg font-semibold">{education.title}</h4>
-                <p className="text-sm text-secondary">{education.company}</p>
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold">{education.title}</h4>
+                <p className="text-xs text-primary/80">{education.company}</p>
               </div>
-              <span className="ml-auto text-xs font-medium text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">
-                {education.period}
-              </span>
+              <span className="text-xs text-muted-foreground">{education.period}</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{education.description}</p>
           </div>
