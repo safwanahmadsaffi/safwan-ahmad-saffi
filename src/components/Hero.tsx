@@ -1,116 +1,103 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, ChevronDown, Code } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profileImg from "@/assets/profile.jpg";
 
 const Hero = () => {
   return (
-    <section id="hero" className="min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 relative">
-      {/* Gradient background blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,_hsl(260_80%_50%_/_0.3)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_hsl(220_100%_57%_/_0.25)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,_hsl(186_100%_50%_/_0.1)_0%,_transparent_70%)] blur-3xl" />
+    <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative pt-20">
+      {/* Subtle ambient glow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/[0.07] blur-[120px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
-        {/* "that's me!" label */}
-        <motion.span
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-sm text-secondary font-medium mb-2 italic"
-        >
-          that's me!
-        </motion.span>
-
+      <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
         {/* Profile photo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8 }}
           className="relative mb-8"
         >
-          <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_60px_hsl(220_100%_57%_/_0.3)]">
+          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden glass-card p-1">
             <img
               src={profileImg}
               alt="Muhammad Safwan Ahmad Saffi"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-full"
             />
           </div>
-          {/* Glow ring */}
-          <div className="absolute inset-0 rounded-full border-2 border-secondary/20 animate-pulse-slow scale-110" />
         </motion.div>
 
         {/* Name */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-3 tracking-tight text-foreground"
         >
-          <span className="text-foreground">Muhammad Safwan</span>
+          Muhammad Safwan
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-xl sm:text-2xl font-semibold text-gradient-primary mb-4"
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-lg sm:text-xl font-medium text-gradient-primary mb-5"
         >
           GenAI Developer & Data Science Enthusiast
-        </motion.h2>
+        </motion.p>
 
         {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-base sm:text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed"
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="text-muted-foreground max-w-lg mb-8 leading-relaxed"
         >
-          Passionate about GenAI, Data Science & Python development. Experienced in generative AI, chatbot integration, web scraping, and solving real-world problems.
+          Passionate about GenAI, Data Science & Python development.
+          Experienced in generative AI, chatbot integration, web scraping,
+          and solving real-world problems.
         </motion.p>
 
-        {/* CTA button */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
           className="mb-10"
         >
           <Button
-            size="lg"
             variant="outline"
-            className="group px-8 py-6 text-base font-semibold border-foreground/20 hover:bg-primary/10 hover:border-primary rounded-full"
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group px-7 py-5 text-sm font-medium border-border/60 hover:bg-primary/10 hover:border-primary/40 rounded-full glass-card"
+            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
           >
-            <Code className="mr-2 h-5 w-5" />
+            <Code className="mr-2 h-4 w-4" />
             View My Work
           </Button>
         </motion.div>
 
         {/* Social icons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="flex items-center gap-5"
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="flex items-center gap-4"
         >
           {[
             { href: "mailto:safwanahmadsaffi836@gmail.com", icon: Mail, label: "Email" },
             { href: "https://www.linkedin.com/in/safwan-ahmad-saffi/", icon: Linkedin, label: "LinkedIn" },
             { href: "https://github.com/safwanahmadsaffi", icon: Github, label: "GitHub" },
-          ].map((social) => (
+          ].map((s) => (
             <a
-              key={social.label}
-              href={social.href}
-              target={social.href.startsWith("mailto") ? undefined : "_blank"}
-              rel={social.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              aria-label={social.label}
-              className="w-14 h-14 rounded-full bg-card/60 border border-border/50 flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 backdrop-blur-sm"
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith("mailto") ? undefined : "_blank"}
+              rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+              aria-label={s.label}
+              className="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
-              <social.icon className="w-6 h-6 text-muted-foreground" />
+              <s.icon className="w-[18px] h-[18px] text-muted-foreground" />
             </a>
           ))}
         </motion.div>
@@ -119,15 +106,12 @@ const Hero = () => {
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 0.4 }}
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ChevronDown className="w-6 h-6 text-muted-foreground" />
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.5, repeat: Infinity }}>
+          <ChevronDown className="w-5 h-5 text-muted-foreground" />
         </motion.div>
       </motion.div>
     </section>
