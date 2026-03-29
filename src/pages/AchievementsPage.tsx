@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Trophy, Award, Code, Rocket, GraduationCap, Users,
-  ArrowLeft, Zap, ExternalLink
+  ArrowLeft, Zap, ExternalLink, Globe, Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -46,13 +46,23 @@ const competitions: Competition[] = [
     year: "2024",
     description: "Participated in the world's largest annual hackathon, developing innovative solutions for space-related challenges.",
     badges: ["International", "Space Tech"],
+    link: "https://www.spaceappschallenge.org/",
   },
   {
     title: "Intel Hackathons",
     placement: "5x Participant",
     year: "2023-2024",
-    description: "Participated in five Intel-sponsored hackathons, building AI and hardware-integrated solutions.",
+    description: "Participated in five Intel-sponsored hackathons, building AI and hardware-integrated solutions using Intel oneAPI toolkit.",
     badges: ["5x", "Intel"],
+    link: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/hackathons.html",
+  },
+  {
+    title: "Google Solution Challenge",
+    placement: "Participant",
+    year: "2024",
+    description: "Developed a solution addressing UN Sustainable Development Goals using Google technologies as part of GDSC.",
+    badges: ["Google", "SDGs"],
+    link: "https://developers.google.com/community/gdsc-solution-challenge",
   },
   {
     title: "10+ International Hackathons",
@@ -60,6 +70,14 @@ const competitions: Competition[] = [
     year: "2023-2025",
     description: "Competed in over 10 international hackathons across various domains including AI, web development, and data science.",
     badges: ["10+", "International"],
+  },
+  {
+    title: "MLH Global Hack Week",
+    placement: "Participant",
+    year: "2024",
+    description: "Participated in Major League Hacking's Global Hack Week, completing challenges across web dev, AI, and open source.",
+    badges: ["MLH", "Global"],
+    link: "https://ghw.mlh.io/",
   },
 ];
 
@@ -70,6 +88,7 @@ const competitiveProgramming: Competition[] = [
     year: "2024",
     description: "Competed in the prestigious MIT Informatics Tournament, tackling advanced algorithmic challenges.",
     badges: ["MIT", "Algorithms"],
+    link: "https://mitit.org/",
   },
   {
     title: "Calico Summer Competition",
@@ -77,6 +96,7 @@ const competitiveProgramming: Competition[] = [
     year: "2024",
     description: "Participated in UC Berkeley's Calico programming competition solving complex computational problems.",
     badges: ["UC Berkeley", "CP"],
+    link: "https://calico.cs.berkeley.edu/",
   },
   {
     title: "Harvard CS50x Puzzle Day",
@@ -84,13 +104,15 @@ const competitiveProgramming: Competition[] = [
     year: "2023-2024",
     description: "Participated twice in Harvard's CS50x Puzzle Day, solving creative logic and computational puzzles.",
     badges: ["Harvard", "2x"],
+    link: "https://cs50.harvard.edu/x/",
   },
   {
     title: "Meta Hacker Cup",
     placement: "2x Participant",
     year: "2023-2024",
-    description: "Competed twice in Meta's global algorithmic programming competition.",
+    description: "Competed twice in Meta's global algorithmic programming competition against thousands of coders worldwide.",
     badges: ["Meta", "2x"],
+    link: "https://www.facebook.com/codingcompetitions/hacker-cup",
   },
   {
     title: "Advent of Code",
@@ -98,6 +120,7 @@ const competitiveProgramming: Competition[] = [
     year: "2024",
     description: "Completed daily algorithmic challenges during the annual Advent of Code competition.",
     badges: ["Global", "Daily"],
+    link: "https://adventofcode.com/",
   },
   {
     title: "Code Sprint LA",
@@ -105,6 +128,22 @@ const competitiveProgramming: Competition[] = [
     year: "2024",
     description: "Competed in the Code Sprint LA competitive programming event.",
     badges: ["Los Angeles", "Sprint"],
+  },
+  {
+    title: "LeetCode Contests",
+    placement: "Regular Participant",
+    year: "2023-2025",
+    description: "Regularly compete in LeetCode weekly and biweekly contests, solving algorithmic and data structure problems.",
+    badges: ["LeetCode", "Weekly"],
+    link: "https://leetcode.com/safwanahmadsaffi/",
+  },
+  {
+    title: "Codeforces Rounds",
+    placement: "Participant",
+    year: "2024",
+    description: "Participated in Codeforces competitive programming rounds, improving problem-solving and algorithmic skills.",
+    badges: ["Codeforces", "CP"],
+    link: "https://codeforces.com/",
   },
 ];
 
@@ -115,6 +154,7 @@ const awards: Competition[] = [
     year: "2024",
     description: "Selected as a student for Code-In-Place program at Stanford University, one of the most prestigious coding programs globally.",
     badges: ["Stanford", "Selected"],
+    link: "https://codeinplace.stanford.edu/",
   },
   {
     title: "Judge & Subject Matter Expert Lead",
@@ -129,6 +169,7 @@ const awards: Competition[] = [
     year: "2024",
     description: "Accepted into the GitHub Developer Program, contributing to open-source and developer tools.",
     badges: ["GitHub", "Developer"],
+    link: "https://docs.github.com/en/developers",
   },
   {
     title: "GitHub Pro Member",
@@ -136,12 +177,29 @@ const awards: Competition[] = [
     year: "2024",
     description: "Achieved GitHub Pro membership status for active open-source contributions.",
     badges: ["GitHub", "Pro"],
+    link: "https://github.com/safwanahmadsaffi",
+  },
+  {
+    title: "Hacktoberfest Contributor",
+    placement: "Completed",
+    year: "2023-2024",
+    description: "Successfully completed Hacktoberfest by contributing to multiple open-source repositories during October.",
+    badges: ["Open Source", "2x"],
+    link: "https://hacktoberfest.com/",
+  },
+  {
+    title: "Google Cloud Skills Boost",
+    placement: "Certified",
+    year: "2024",
+    description: "Completed Google Cloud learning paths and earned skill badges in cloud computing and AI/ML.",
+    badges: ["Google Cloud", "Certified"],
+    link: "https://www.cloudskillsboost.google/",
   },
 ];
 
 const stats = [
-  { value: "10+", label: "Hackathons", icon: Rocket },
-  { value: "6", label: "Elite Competitions", icon: Code },
+  { value: "15+", label: "Hackathons", icon: Rocket },
+  { value: "8+", label: "Elite Competitions", icon: Code },
   { value: "150+", label: "Teams Evaluated", icon: Users },
   { value: "5", label: "Top Universities", icon: GraduationCap },
 ];
@@ -162,7 +220,9 @@ const itemVariants = {
 const CompetitionCard = ({ competition }: { competition: Competition }) => {
   const isWinner = competition.placement.toLowerCase().includes("winner") ||
     competition.placement.toLowerCase().includes("1st") ||
-    competition.placement.toLowerCase().includes("selected");
+    competition.placement.toLowerCase().includes("selected") ||
+    competition.placement.toLowerCase().includes("completed") ||
+    competition.placement.toLowerCase().includes("certified");
 
   return (
     <motion.div
@@ -224,7 +284,6 @@ const CompetitionCard = ({ competition }: { competition: Competition }) => {
 const AchievementsPage = () => {
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background effects */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,_hsl(260_80%_50%_/_0.15)_0%,_transparent_70%)] blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_hsl(220_100%_57%_/_0.1)_0%,_transparent_70%)] blur-3xl" />
@@ -258,7 +317,7 @@ const AchievementsPage = () => {
               <span className="text-gradient-primary">Awards</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              My prized achievements through various hackathons and competitions
+              My prized achievements through various hackathons, competitive programming, and professional recognition
             </p>
           </motion.div>
 
@@ -283,88 +342,13 @@ const AchievementsPage = () => {
           </motion.div>
 
           {/* Hackathons Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Trophy className="w-5 h-5 text-primary" />
-              </div>
-              <h2 className="text-2xl font-bold">Hackathons</h2>
-            </div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {competitions.map((comp) => (
-                <CompetitionCard key={comp.title} competition={comp} />
-              ))}
-            </motion.div>
-          </motion.section>
+          <SectionBlock icon={Trophy} title="Hackathons" items={competitions} iconColor="text-primary" bgColor="bg-primary/10" />
 
           {/* Competitive Programming Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
-                <Code className="w-5 h-5 text-secondary" />
-              </div>
-              <h2 className="text-2xl font-bold">Competitive Programming</h2>
-            </div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {competitiveProgramming.map((comp) => (
-                <CompetitionCard key={comp.title} competition={comp} />
-              ))}
-            </motion.div>
-          </motion.section>
+          <SectionBlock icon={Code} title="Competitive Programming" items={competitiveProgramming} iconColor="text-secondary" bgColor="bg-secondary/10" />
 
           {/* Recognition Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                <Award className="w-5 h-5 text-accent" />
-              </div>
-              <h2 className="text-2xl font-bold">Recognition</h2>
-            </div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {awards.map((comp) => (
-                <CompetitionCard key={comp.title} competition={comp} />
-              ))}
-            </motion.div>
-          </motion.section>
+          <SectionBlock icon={Award} title="Recognition & Awards" items={awards} iconColor="text-accent" bgColor="bg-accent/10" />
 
           {/* CTA */}
           <motion.div
@@ -392,5 +376,41 @@ const AchievementsPage = () => {
     </div>
   );
 };
+
+const SectionBlock = ({ icon: Icon, title, items, iconColor, bgColor }: {
+  icon: React.ElementType;
+  title: string;
+  items: Competition[];
+  iconColor: string;
+  bgColor: string;
+}) => (
+  <motion.section
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    className="mb-16"
+  >
+    <div className="flex items-center gap-3 mb-8">
+      <div className={`w-10 h-10 rounded-xl ${bgColor} flex items-center justify-center`}>
+        <Icon className={`w-5 h-5 ${iconColor}`} />
+      </div>
+      <h2 className="text-2xl font-bold">{title}</h2>
+      <span className="text-sm text-muted-foreground ml-auto">{items.length} entries</span>
+    </div>
+
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="space-y-4"
+    >
+      {items.map((comp) => (
+        <CompetitionCard key={comp.title} competition={comp} />
+      ))}
+    </motion.div>
+  </motion.section>
+);
 
 export default AchievementsPage;
