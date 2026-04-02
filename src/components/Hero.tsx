@@ -89,16 +89,18 @@ const Hero = () => {
             { href: "https://www.linkedin.com/in/safwan-ahmad-saffi/", icon: Linkedin, label: "LinkedIn" },
             { href: "https://github.com/safwanahmadsaffi", icon: Github, label: "GitHub" },
           ].map((s) => (
-            <a
+            <motion.a
               key={s.label}
               href={s.href}
               target={s.href.startsWith("mailto") ? undefined : "_blank"}
               rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               aria-label={s.label}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
               className="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
               <s.icon className="w-[18px] h-[18px] text-muted-foreground" />
-            </a>
+            </motion.a>
           ))}
         </motion.div>
       </div>

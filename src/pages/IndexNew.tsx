@@ -7,6 +7,7 @@ import Achievements from "@/components/Achievements";
 import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import { useTheme } from "@/hooks/useTheme";
 
 const IndexNew = () => {
@@ -18,27 +19,39 @@ const IndexNew = () => {
       <Hero />
       
       <div className="relative z-20">
-        <section id="projects">
-          <BentoGrid />
-        </section>
+        <ScrollReveal>
+          <section id="projects">
+            <BentoGrid />
+          </section>
+        </ScrollReveal>
         
-        <section id="skills">
-          <Skills />
-        </section>
+        <ScrollReveal delay={0.05}>
+          <section id="skills">
+            <Skills />
+          </section>
+        </ScrollReveal>
         
-        <section id="experience">
-          <Experience />
-        </section>
+        <ScrollReveal delay={0.05} direction="left">
+          <section id="experience">
+            <Experience />
+          </section>
+        </ScrollReveal>
         
-        <section id="achievements">
-          <Achievements />
-        </section>
+        <ScrollReveal>
+          <section id="achievements">
+            <Achievements />
+          </section>
+        </ScrollReveal>
         
-        <LiveStats />
+        <ScrollReveal delay={0.1}>
+          <LiveStats />
+        </ScrollReveal>
         
-        <section id="contact">
-          <Contact />
-        </section>
+        <ScrollReveal direction="right">
+          <section id="contact">
+            <Contact />
+          </section>
+        </ScrollReveal>
         
         <Footer />
       </div>
