@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Download, Trophy } from "lucide-react";
+import { Menu, X, Download, Sun, Moon } from "lucide-react";
 
-const TopNavigation: React.FC = () => {
+interface TopNavigationProps {
+  theme?: "dark" | "light";
+  onToggleTheme?: () => void;
+}
+
+const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -58,7 +63,20 @@ const TopNavigation: React.FC = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-2">
+          {/* Theme toggle */}
+          <button
+            onClick={onToggleTheme}
+            className="w-9 h-9 rounded-full glass-card flex items-center justify-center hover:border-primary/30 transition-all duration-300"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4 text-muted-foreground" />
+            ) : (
+              <Moon className="w-4 h-4 text-muted-foreground" />
+            )}
+          </button>
+
           <a
             href="/Safwan_Ahmad_CV.pdf"
             download
@@ -70,9 +88,22 @@ const TopNavigation: React.FC = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={onToggleTheme}
+            className="w-9 h-9 rounded-full glass-card flex items-center justify-center"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4 text-muted-foreground" />
+            ) : (
+              <Moon className="w-4 h-4 text-muted-foreground" />
+            )}
+          </button>
+          <button className="text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
