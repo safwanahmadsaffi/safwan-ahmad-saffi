@@ -7,11 +7,14 @@ import Achievements from "@/components/Achievements";
 import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/hooks/useTheme";
 
 const IndexNew = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <div className="relative overflow-x-hidden bg-background min-h-screen">
-      <TopNavigation />
+      <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
       <Hero />
       
       <div className="relative z-20">
