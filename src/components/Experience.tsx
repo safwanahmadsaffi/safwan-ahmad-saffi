@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 
 const experiences = [
   {
@@ -7,18 +7,32 @@ const experiences = [
     company: "Vast Art, Faisalabad",
     period: "Jun 2024 – Jul 2024",
     description: "Built generative AI applications, integrated APIs and chatbots. Automated web data collection via scraping.",
+    badges: ["GenAI", "APIs"],
+    current: false,
   },
   {
     title: "Data Science Intern",
     company: "Snappy Sol, Faisalabad",
     period: "Jun 2023 – Aug 2023",
     description: "Python development, data analysis & modeling, strategic issue analysis and data-driven solutions.",
+    badges: ["Python", "Data Science"],
+    current: false,
+  },
+  {
+    title: "Judge & SME Lead",
+    company: "National Hackathon",
+    period: "2024",
+    description: "Supervised 15 staff members and evaluated projects of 150+ teams across multiple categories.",
+    badges: ["Leadership", "150+ Teams"],
+    current: false,
   },
   {
     title: "Teacher Assistant",
     company: "Kips Academy",
     period: "Jul 2022 – Aug 2022",
     description: "Management staff member. Coordinated class timetable, maintained discipline, assisted teaching.",
+    badges: ["Education"],
+    current: false,
   },
 ];
 
@@ -37,33 +51,49 @@ const Experience = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-semibold text-center mb-14"
+          className="font-display text-3xl sm:text-4xl font-bold mb-12"
         >
-          <span className="text-foreground">Work </span>
-          <span className="text-gradient-primary">Experience</span>
+          Experience.
         </motion.h2>
 
-        {/* Timeline */}
-        <div className="relative space-y-6">
-          <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border/60" />
-
+        <div className="space-y-5">
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="relative pl-12"
+              className="glass-card rounded-xl p-6 group"
             >
-              <div className="absolute left-[14px] top-2 w-[11px] h-[11px] rounded-full border-2 border-primary/60 bg-background" />
-              <div className="glass-card rounded-xl p-5">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="text-sm font-semibold text-foreground">{exp.title}</h3>
+              <div className="flex items-start justify-between mb-2">
+                <div>
+                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {exp.title}
+                  </h3>
+                  <p className="text-sm text-primary/70">{exp.company}</p>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0 ml-4">
+                  {exp.current && (
+                    <span className="px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+                      Current
+                    </span>
+                  )}
                   <span className="text-xs text-muted-foreground">{exp.period}</span>
                 </div>
-                <p className="text-xs text-primary/80 mb-2">{exp.company}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+              </div>
+
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">{exp.description}</p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {exp.badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="px-2.5 py-0.5 text-[11px] font-medium text-primary/70 bg-primary/[0.08] rounded-full border border-primary/10"
+                  >
+                    {badge}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}
@@ -74,17 +104,17 @@ const Experience = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-14"
+          className="mt-12"
         >
-          <h3 className="text-lg font-semibold text-center mb-6 text-foreground">Education</h3>
-          <div className="glass-card rounded-xl p-5">
+          <h3 className="font-display text-xl font-bold mb-5">Education.</h3>
+          <div className="glass-card rounded-xl p-6">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-lg glass flex items-center justify-center">
-                <GraduationCap className="w-4 h-4 text-primary" />
+              <div className="w-10 h-10 rounded-lg glass flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <h4 className="text-sm font-semibold">{education.title}</h4>
-                <p className="text-xs text-primary/80">{education.company}</p>
+                <h4 className="text-base font-semibold">{education.title}</h4>
+                <p className="text-sm text-primary/70">{education.company}</p>
               </div>
               <span className="text-xs text-muted-foreground">{education.period}</span>
             </div>

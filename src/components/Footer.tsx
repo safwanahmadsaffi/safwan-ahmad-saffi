@@ -3,8 +3,8 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-10 px-4 sm:px-6 lg:px-8 border-t border-border/40">
-      <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="py-10 px-4 sm:px-6 lg:px-8 border-t border-border/30">
+      <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} Safwan Ahmad. Built with care.
         </p>
@@ -21,7 +21,7 @@ const Footer = () => {
               rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              className="w-8 h-8 rounded-full border border-border/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
             >
               <s.icon className="h-3.5 w-3.5" />
             </motion.a>

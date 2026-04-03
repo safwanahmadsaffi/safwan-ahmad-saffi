@@ -1,92 +1,72 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, ChevronDown, Code } from "lucide-react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ChevronDown, Code, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import profileImg from "@/assets/profile.jpg";
-import { useRef } from "react";
+import ShootingStars from "@/components/ShootingStars";
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const glowScale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
-  const glowOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
   return (
-    <section ref={sectionRef} id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative pt-20">
-      {/* Parallax ambient glow */}
+    <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative">
+      <ShootingStars />
+
+      {/* Ambient glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          style={{ y: glowY, scale: glowScale, opacity: glowOpacity }}
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/[0.07] blur-[120px]"
-        />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/[0.08] blur-[120px]" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
-        {/* Profile photo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative mb-8"
-        >
-          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden glass-card p-1">
-            <img
-              src={profileImg}
-              alt="Muhammad Safwan Ahmad Saffi"
-              className="w-full h-full object-cover rounded-full"
-            />
-          </div>
-        </motion.div>
-
-        {/* Name */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
+        {/* Big bold name */}
         <motion.h1
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-3 tracking-tight text-foreground"
+          transition={{ duration: 0.8 }}
+          className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-foreground mb-6 leading-[0.9]"
         >
-          Muhammad Safwan
+          SAFWAN
+          <br />
+          <span className="text-gradient">AHMAD</span>
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-base sm:text-lg text-muted-foreground max-w-xl mb-4 leading-relaxed"
+        >
+          Builder. Developer. I build GenAI apps, win hackathons, and ship data-driven solutions.
+        </motion.p>
+
+        {/* Role line */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-lg sm:text-xl font-medium text-gradient-primary mb-5"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-sm text-muted-foreground/70 mb-10"
         >
-          GenAI Developer & Data Science Enthusiast
+          GenAI Developer · Data Science Enthusiast · Stanford Code-In-Place '24
         </motion.p>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-muted-foreground max-w-lg mb-8 leading-relaxed"
-        >
-          Passionate about GenAI, Data Science & Python development.
-          Experienced in generative AI, chatbot integration, web scraping,
-          and solving real-world problems.
-        </motion.p>
-
-        {/* CTA */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          className="mb-10"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-wrap items-center justify-center gap-3 mb-10"
         >
           <Button
-            variant="outline"
-            className="group px-7 py-5 text-sm font-medium border-border/60 hover:bg-primary/10 hover:border-primary/40 rounded-full glass-card"
+            className="px-7 py-5 text-sm font-semibold rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
             onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
           >
             <Code className="mr-2 h-4 w-4" />
-            View My Work
+            View Work
+          </Button>
+          <Button
+            variant="outline"
+            className="px-7 py-5 text-sm font-semibold rounded-full border-border/60 hover:bg-foreground/5"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <MessageSquare className="mr-2 h-4 w-4" />
+            Let's Talk
           </Button>
         </motion.div>
 
@@ -98,9 +78,9 @@ const Hero = () => {
           className="flex items-center gap-4"
         >
           {[
-            { href: "mailto:safwanahmadsaffi836@gmail.com", icon: Mail, label: "Email" },
             { href: "https://www.linkedin.com/in/safwan-ahmad-saffi/", icon: Linkedin, label: "LinkedIn" },
             { href: "https://github.com/safwanahmadsaffi", icon: Github, label: "GitHub" },
+            { href: "mailto:safwanahmadsaffi836@gmail.com", icon: Mail, label: "Email" },
           ].map((s) => (
             <motion.a
               key={s.label}
@@ -110,9 +90,9 @@ const Hero = () => {
               aria-label={s.label}
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
-              className="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+              className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
             >
-              <s.icon className="w-[18px] h-[18px] text-muted-foreground" />
+              <s.icon className="w-4 h-4 text-muted-foreground" />
             </motion.a>
           ))}
         </motion.div>
@@ -125,8 +105,12 @@ const Hero = () => {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.5, repeat: Infinity }}>
-          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
+          className="w-6 h-10 rounded-full border border-border/40 flex items-start justify-center pt-2"
+        >
+          <motion.div className="w-1 h-2 rounded-full bg-muted-foreground" />
         </motion.div>
       </motion.div>
     </section>

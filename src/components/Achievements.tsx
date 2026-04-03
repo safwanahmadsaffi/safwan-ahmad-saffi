@@ -5,44 +5,17 @@ import { Button } from "@/components/ui/button";
 
 interface Achievement {
   title: string;
-  placement: string;
-  year: string;
   description: string;
-  badges: string[];
-  link?: string;
+  highlight?: boolean;
 }
 
 const achievements: Achievement[] = [
-  {
-    title: "National WordPress Hackathon",
-    placement: "Winner",
-    year: "2024",
-    description: "Won the national WordPress hackathon competing against teams from across the country.",
-    badges: ["1st Place", "National"],
-    link: "https://github.com/safwanahmadsaffi",
-  },
-  {
-    title: "Stanford Code-In-Place",
-    placement: "Selected Student",
-    year: "2024",
-    description: "Selected for Stanford University's prestigious Code-In-Place program.",
-    badges: ["Stanford", "Selected"],
-  },
-  {
-    title: "Shell.ai Hackathon 2025",
-    placement: "Participant",
-    year: "2025",
-    description: "Predicted fuel blend properties and optimized sustainable aviation fuel models.",
-    badges: ["International", "AI/ML"],
-    link: "https://github.com/safwanahmadsaffi/Shell.ai-Hackathon-2025",
-  },
-  {
-    title: "Judge & SME Lead",
-    placement: "Leadership Role",
-    year: "2024",
-    description: "Supervised 15 staff members and evaluated projects of 150+ teams.",
-    badges: ["15 Staff", "150+ Teams"],
-  },
+  { title: "National WordPress Hackathon", description: "Winner · 1st Place nationally", highlight: true },
+  { title: "Stanford Code-In-Place", description: "Selected Student · 2024", highlight: true },
+  { title: "Shell.ai Hackathon 2025", description: "International · AI/ML competition" },
+  { title: "Judge & SME Lead", description: "Supervised 15 staff · 150+ teams evaluated", highlight: true },
+  { title: "TCF Baghbaan Volunteer", description: "Helping underprivileged children in Pakistan" },
+  { title: "Aspire Leadership Program", description: "International cohort member" },
 ];
 
 const Achievements = () => {
@@ -53,64 +26,29 @@ const Achievements = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-semibold text-center mb-14"
+          className="font-display text-3xl sm:text-4xl font-bold mb-12"
         >
-          <span className="text-foreground">Competitions & </span>
-          <span className="text-gradient-primary">Awards</span>
+          Mini Wins.
         </motion.h2>
 
-        <div className="space-y-4">
-          {achievements.map((item, i) => {
-            const isHighlight =
-              item.placement.toLowerCase().includes("winner") ||
-              item.placement.toLowerCase().includes("selected");
-
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="glass-card rounded-xl p-5 hover:border-primary/20 transition-all duration-300 group"
-              >
-                <div className="flex items-start justify-between mb-1">
-                  <h3 className="text-sm font-semibold group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <span className="text-xs text-muted-foreground ml-4 flex-shrink-0">{item.year}</span>
-                </div>
-
-                <p className={`text-xs font-semibold mb-2 ${isHighlight ? "text-yellow-400/90" : "text-primary/70"}`}>
-                  {item.placement}
-                </p>
-
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{item.description}</p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.badges.map((badge) => (
-                      <span
-                        key={badge}
-                        className={`px-2.5 py-0.5 text-[11px] font-medium rounded-full ${
-                          badge.includes("1st") || badge.includes("Selected")
-                            ? "bg-yellow-400/10 text-yellow-400/80 border border-yellow-400/20"
-                            : "glass text-muted-foreground"
-                        }`}
-                      >
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                  {item.link && (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {achievements.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="glass-card rounded-xl p-5 group"
+            >
+              <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                {item.title}
+              </h3>
+              <p className={`text-xs leading-relaxed ${item.highlight ? "text-primary/70" : "text-muted-foreground"}`}>
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
         <motion.div
