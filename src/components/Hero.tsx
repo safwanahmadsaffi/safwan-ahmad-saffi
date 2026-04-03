@@ -1,14 +1,27 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Github, Linkedin, Mail, ChevronDown, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profileImg from "@/assets/profile.jpg";
+import { useRef } from "react";
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const glowScale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
   return (
-    <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative pt-20">
-      {/* Subtle ambient glow */}
+    <section ref={sectionRef} id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative pt-20">
+      {/* Parallax ambient glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/[0.07] blur-[120px]" />
+        <motion.div
+          style={{ y: glowY, scale: glowScale, opacity: glowOpacity }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/[0.07] blur-[120px]"
+        />
       </div>
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
