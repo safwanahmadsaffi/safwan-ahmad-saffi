@@ -26,7 +26,7 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
     { name: "Home", id: "hero" },
     { name: "Experience", id: "experience" },
     { name: "Projects", id: "projects" },
-    { name: "Skills", id: "skills" },
+    { name: "Wins", id: "achievements" },
     { name: "Contact", id: "contact" },
   ];
 
@@ -38,10 +38,10 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
     >
       <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
         <div
-          className="cursor-pointer text-sm font-semibold tracking-tight text-foreground"
+          className="cursor-pointer text-sm font-bold tracking-tight text-foreground font-display"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          Safwan Ahmad
+          SA.
         </div>
 
         {/* Desktop */}
@@ -50,24 +50,23 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
             <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
-              className="px-3.5 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors duration-200"
+              className="px-3.5 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors duration-200 hover:underline underline-offset-4 decoration-primary"
             >
               {link.name}
             </button>
           ))}
           <Link
             to="/achievements"
-            className="px-3.5 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors duration-200"
+            className="px-3.5 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors duration-200 hover:underline underline-offset-4 decoration-primary"
           >
             Achievements
           </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-2">
-          {/* Theme toggle */}
           <button
             onClick={onToggleTheme}
-            className="w-9 h-9 rounded-full glass-card flex items-center justify-center hover:border-primary/30 transition-all duration-300"
+            className="w-9 h-9 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/30 transition-all duration-300"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
@@ -80,7 +79,7 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
           <a
             href="/Safwan_Ahmad_CV.pdf"
             download
-            className="px-4 py-1.5 rounded-full glass-card text-[13px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-300 flex items-center gap-1.5"
+            className="px-4 py-1.5 rounded-full border border-border/40 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-300 flex items-center gap-1.5"
           >
             <Download size={14} />
             CV
@@ -91,7 +90,7 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={onToggleTheme}
-            className="w-9 h-9 rounded-full glass-card flex items-center justify-center"
+            className="w-9 h-9 rounded-full border border-border/40 flex items-center justify-center"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
@@ -128,7 +127,7 @@ const TopNavigation: React.FC<TopNavigationProps> = ({ theme = "dark", onToggleT
           <a
             href="/Safwan_Ahmad_CV.pdf"
             download
-            className="mt-3 px-4 py-2.5 rounded-full glass-card text-center text-sm font-medium flex items-center justify-center gap-2"
+            className="mt-3 px-4 py-2.5 rounded-full border border-border/40 text-center text-sm font-medium flex items-center justify-center gap-2"
           >
             <Download size={14} />
             Download CV

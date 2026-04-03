@@ -1,5 +1,6 @@
 import TopNavigation from "@/components/TopNavigation";
 import Hero from "@/components/Hero";
+import AboutSection from "@/components/AboutSection";
 import BentoGrid from "@/components/BentoGrid";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
@@ -20,27 +21,23 @@ const IndexNew = () => {
       
       <div className="relative z-20">
         <ScrollReveal>
-          <section id="projects">
-            <BentoGrid />
-          </section>
+          <AboutSection />
         </ScrollReveal>
-        
+
         <ScrollReveal delay={0.05}>
-          <section id="skills">
-            <Skills />
-          </section>
-        </ScrollReveal>
-        
-        <ScrollReveal delay={0.05} direction="left">
-          <section id="experience">
-            <Experience />
-          </section>
+          <Experience />
         </ScrollReveal>
         
         <ScrollReveal>
-          <section id="achievements">
-            <Achievements />
-          </section>
+          <BentoGrid />
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.05}>
+          <Skills />
+        </ScrollReveal>
+        
+        <ScrollReveal>
+          <Achievements />
         </ScrollReveal>
         
         <ScrollReveal delay={0.1}>
@@ -48,9 +45,7 @@ const IndexNew = () => {
         </ScrollReveal>
         
         <ScrollReveal direction="right">
-          <section id="contact">
-            <Contact />
-          </section>
+          <Contact />
         </ScrollReveal>
         
         <Footer />

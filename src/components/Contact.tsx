@@ -1,61 +1,79 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MapPin, Phone } from "lucide-react";
-
-const contactLinks = [
-  { href: "mailto:safwanahmadsaffi836@gmail.com", icon: Mail, label: "safwanahmadsaffi836@gmail.com" },
-  { href: "https://www.linkedin.com/in/safwan-ahmad-saffi/", icon: Linkedin, label: "linkedin.com/in/safwan-ahmad-saffi", external: true },
-  { href: "https://github.com/safwanahmadsaffi", icon: Github, label: "github.com/safwanahmadsaffi", external: true },
-  { href: "tel:+923187426639", icon: Phone, label: "+92 318 7426639" },
-];
+import { Mail, Github, Linkedin, MapPin, Phone, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-semibold text-center mb-4"
+          className="font-display text-3xl sm:text-4xl font-bold mb-4"
         >
-          <span className="text-foreground">Get In </span>
-          <span className="text-gradient-primary">Touch</span>
+          Let's build something.
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-sm text-muted-foreground text-center mb-10"
+          className="text-muted-foreground mb-10 max-w-lg mx-auto"
         >
-          Let's discuss opportunities, collaborations, or just connect.
+          Whether it's a collaboration, hackathon team, or just want to talk AI and data, I'm one message away.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-card rounded-xl p-6 space-y-4"
+          className="flex flex-wrap items-center justify-center gap-3 mb-12"
         >
-          {contactLinks.map((item) => (
+          <Button
+            className="px-7 py-5 text-sm font-semibold rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+            asChild
+          >
+            <a href="mailto:safwanahmadsaffi836@gmail.com">
+              <Mail className="mr-2 h-4 w-4" />
+              Send Email
+            </a>
+          </Button>
+          <Button
+            variant="outline"
+            className="px-7 py-5 text-sm font-semibold rounded-full border-border/60"
+            asChild
+          >
+            <a href="https://www.linkedin.com/in/safwan-ahmad-saffi/" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="mr-2 h-4 w-4" />
+              LinkedIn
+            </a>
+          </Button>
+        </motion.div>
+
+        {/* Social row */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center justify-center gap-5 text-sm text-muted-foreground"
+        >
+          {[
+            { href: "https://www.linkedin.com/in/safwan-ahmad-saffi/", label: "LinkedIn", icon: Linkedin },
+            { href: "https://github.com/safwanahmadsaffi", label: "GitHub", icon: Github },
+            { href: "mailto:safwanahmadsaffi836@gmail.com", label: "Email", icon: Mail },
+          ].map((s) => (
             <a
-              key={item.label}
-              href={item.href}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
+              key={s.label}
+              href={s.href}
+              target={s.href.startsWith("mailto") ? undefined : "_blank"}
+              rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+              className="flex items-center gap-1.5 hover:text-foreground transition-colors"
             >
-              <div className="w-9 h-9 rounded-lg glass flex items-center justify-center group-hover:border-primary/20 transition-colors">
-                <item.icon className="w-4 h-4 text-primary/70" />
-              </div>
-              <span className="text-sm">{item.label}</span>
+              <s.icon className="w-4 h-4" />
+              {s.label}
             </a>
           ))}
-          <div className="flex items-center gap-3 text-muted-foreground">
-            <div className="w-9 h-9 rounded-lg glass flex items-center justify-center">
-              <MapPin className="w-4 h-4 text-primary/70" />
-            </div>
-            <span className="text-sm">Faisalabad, Pakistan</span>
-          </div>
         </motion.div>
       </div>
     </section>
