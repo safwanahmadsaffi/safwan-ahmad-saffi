@@ -17,21 +17,9 @@ const IndexNew = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="relative overflow-x-hidden min-h-screen" style={{ background: 'transparent' }}>
-      <ParticleField />
-
-      {/* Floating glow blobs for extra ambient movement */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="floating-blob w-[500px] h-[500px] bg-purple-600/20 top-[10%] left-[-10%]" style={{ animationDelay: '0s' }} />
-        <div className="floating-blob-alt w-[400px] h-[400px] bg-pink-500/15 top-[40%] right-[-5%]" style={{ animationDelay: '5s' }} />
-        <div className="floating-blob w-[350px] h-[350px] bg-cyan-500/10 bottom-[20%] left-[20%]" style={{ animationDelay: '10s' }} />
-        <div className="floating-blob-alt w-[450px] h-[450px] bg-indigo-600/15 top-[60%] left-[50%]" style={{ animationDelay: '3s' }} />
-        <div className="floating-blob w-[300px] h-[300px] bg-fuchsia-500/10 top-[80%] right-[30%]" style={{ animationDelay: '7s' }} />
-      </div>
-
-      <div className="relative z-10">
-        <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
-        <Hero />
+    <div className="relative overflow-x-hidden bg-background min-h-screen">
+      <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
+      <Hero />
         
         <div className="relative z-20">
           <ScrollReveal>
