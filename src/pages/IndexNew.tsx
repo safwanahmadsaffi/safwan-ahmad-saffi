@@ -9,7 +9,6 @@ import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import ParticleField from "@/components/ParticleField";
 import WaveDivider from "@/components/WaveDivider";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -20,48 +19,47 @@ const IndexNew = () => {
     <div className="relative overflow-x-hidden bg-background min-h-screen">
       <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
       <Hero />
-        
-        <div className="relative z-20">
-          <ScrollReveal>
-            <AboutSection />
-          </ScrollReveal>
 
-          <WaveDivider variant="purple" />
+      <div className="relative z-20">
+        <ScrollReveal>
+          <AboutSection />
+        </ScrollReveal>
 
-          <ScrollReveal delay={0.05}>
-            <Experience />
-          </ScrollReveal>
+        <WaveDivider variant="purple" />
 
-          <WaveDivider variant="pink" />
-          
-          <ScrollReveal>
-            <BentoGrid />
-          </ScrollReveal>
+        <ScrollReveal delay={0.05}>
+          <Experience />
+        </ScrollReveal>
 
-          <WaveDivider variant="cyan" />
-          
-          <ScrollReveal delay={0.05}>
-            <Skills />
-          </ScrollReveal>
+        <WaveDivider variant="pink" />
 
-          <WaveDivider variant="purple" />
-          
-          <ScrollReveal>
-            <Achievements />
-          </ScrollReveal>
-          
-          <WaveDivider variant="pink" />
+        <ScrollReveal>
+          <BentoGrid />
+        </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <LiveStats />
-          </ScrollReveal>
-          
-          <ScrollReveal direction="right">
-            <Contact />
-          </ScrollReveal>
-          
-          <Footer />
-        </div>
+        <WaveDivider variant="cyan" />
+
+        <ScrollReveal delay={0.05}>
+          <Skills />
+        </ScrollReveal>
+
+        <WaveDivider variant="purple" />
+
+        <ScrollReveal>
+          <Achievements />
+        </ScrollReveal>
+
+        <WaveDivider variant="pink" />
+
+        <ScrollReveal delay={0.1}>
+          <LiveStats />
+        </ScrollReveal>
+
+        <ScrollReveal direction="right">
+          <Contact />
+        </ScrollReveal>
+
+        <Footer />
       </div>
     </div>
   );
