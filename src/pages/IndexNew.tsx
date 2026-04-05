@@ -9,6 +9,8 @@ import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParticleField from "@/components/ParticleField";
+import WaveDivider from "@/components/WaveDivider";
 import { useTheme } from "@/hooks/useTheme";
 
 const IndexNew = () => {
@@ -16,6 +18,7 @@ const IndexNew = () => {
 
   return (
     <div className="relative overflow-x-hidden bg-background min-h-screen">
+      <ParticleField />
       <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
       <Hero />
       
@@ -24,22 +27,32 @@ const IndexNew = () => {
           <AboutSection />
         </ScrollReveal>
 
+        <WaveDivider variant="purple" />
+
         <ScrollReveal delay={0.05}>
           <Experience />
         </ScrollReveal>
+
+        <WaveDivider variant="pink" />
         
         <ScrollReveal>
           <BentoGrid />
         </ScrollReveal>
+
+        <WaveDivider variant="cyan" />
         
         <ScrollReveal delay={0.05}>
           <Skills />
         </ScrollReveal>
+
+        <WaveDivider variant="purple" />
         
         <ScrollReveal>
           <Achievements />
         </ScrollReveal>
         
+        <WaveDivider variant="pink" />
+
         <ScrollReveal delay={0.1}>
           <LiveStats />
         </ScrollReveal>
