@@ -1,5 +1,5 @@
 import TopNavigation from "@/components/TopNavigation";
-import Hero from "@/components/Hero";
+import Hero from "@/components/MoncyHero";
 import AboutSection from "@/components/AboutSection";
 import BentoGrid from "@/components/BentoGrid";
 import Skills from "@/components/Skills";
