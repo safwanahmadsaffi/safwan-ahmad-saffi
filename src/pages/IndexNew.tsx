@@ -1,66 +1,33 @@
-import TopNavigation from "@/components/TopNavigation";
-import Hero from "@/components/MoncyHero";
-import AboutSection from "@/components/AboutSection";
+import MoncyHero from "@/components/MoncyHero";
+import Scene3DSection from "@/components/Scene3DSection";
 import BentoGrid from "@/components/BentoGrid";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Achievements from "@/components/Achievements";
-import LiveStats from "@/components/LiveStats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import WaveDivider from "@/components/WaveDivider";
-import { useTheme } from "@/hooks/useTheme";
 
 const IndexNew = () => {
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <div className="relative overflow-x-hidden bg-background min-h-screen">
-      <TopNavigation theme={theme} onToggleTheme={toggleTheme} />
-      <Hero />
+    <div className="relative overflow-x-hidden min-h-screen" style={{ background: "#e8e4ec" }}>
+      <MoncyHero />
 
-      <div className="relative z-20">
-        <ScrollReveal>
-          <AboutSection />
-        </ScrollReveal>
+      <Scene3DSection id="about" title="ABOUT" subtitle="WHO I AM" accent="#a78bfa" />
 
-        <WaveDivider variant="purple" />
+      <ScrollReveal><Experience /></ScrollReveal>
+      <Scene3DSection id="projects" title="WORK" subtitle="SELECTED PROJECTS" accent="#ec4899" />
+      <ScrollReveal><BentoGrid /></ScrollReveal>
 
-        <ScrollReveal delay={0.05}>
-          <Experience />
-        </ScrollReveal>
+      <Scene3DSection title="SKILLS" subtitle="STACK & TOOLS" accent="#1a1a1a" />
+      <ScrollReveal><Skills /></ScrollReveal>
 
-        <WaveDivider variant="pink" />
+      <ScrollReveal><Achievements /></ScrollReveal>
 
-        <ScrollReveal>
-          <BentoGrid />
-        </ScrollReveal>
+      <Scene3DSection id="contact" title="LET'S TALK" subtitle="GET IN TOUCH" accent="#a78bfa" />
+      <ScrollReveal><Contact /></ScrollReveal>
 
-        <WaveDivider variant="cyan" />
-
-        <ScrollReveal delay={0.05}>
-          <Skills />
-        </ScrollReveal>
-
-        <WaveDivider variant="purple" />
-
-        <ScrollReveal>
-          <Achievements />
-        </ScrollReveal>
-
-        <WaveDivider variant="pink" />
-
-        <ScrollReveal delay={0.1}>
-          <LiveStats />
-        </ScrollReveal>
-
-        <ScrollReveal direction="right">
-          <Contact />
-        </ScrollReveal>
-
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
