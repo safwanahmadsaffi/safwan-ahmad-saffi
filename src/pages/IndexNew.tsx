@@ -1,5 +1,5 @@
-import MoncyHero from "@/components/MoncyHero";
-import Scene3DSection from "@/components/Scene3DSection";
+import TopNav from "@/components/TopNav";
+import StarHero from "@/components/StarHero";
 import BentoGrid from "@/components/BentoGrid";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
@@ -10,21 +10,15 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 const IndexNew = () => {
   return (
-    <div className="relative overflow-x-hidden min-h-screen" style={{ background: "#e8e4ec" }}>
-      <MoncyHero />
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+      <TopNav />
+      <StarHero />
 
-      <Scene3DSection id="about" title="ABOUT" subtitle="WHO I AM" accent="#a78bfa" />
-
-      <ScrollReveal><Experience /></ScrollReveal>
-      <Scene3DSection id="projects" title="WORK" subtitle="SELECTED PROJECTS" accent="#ec4899" />
+      <div id="about" />
       <ScrollReveal><BentoGrid /></ScrollReveal>
-
-      <Scene3DSection title="SKILLS" subtitle="STACK & TOOLS" accent="#1a1a1a" />
       <ScrollReveal><Skills /></ScrollReveal>
-
+      <ScrollReveal><Experience /></ScrollReveal>
       <ScrollReveal><Achievements /></ScrollReveal>
-
-      <Scene3DSection id="contact" title="LET'S TALK" subtitle="GET IN TOUCH" accent="#a78bfa" />
       <ScrollReveal><Contact /></ScrollReveal>
 
       <Footer />
