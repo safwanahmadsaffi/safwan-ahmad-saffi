@@ -6,7 +6,6 @@ import Experience from "@/components/Experience";
 import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const IndexNew = () => {
   return (
@@ -15,11 +14,11 @@ const IndexNew = () => {
       <StarHero />
 
       <div id="about" />
-      <ScrollReveal><BentoGrid /></ScrollReveal>
-      <ScrollReveal><Skills /></ScrollReveal>
-      <ScrollReveal><Experience /></ScrollReveal>
-      <ScrollReveal><Achievements /></ScrollReveal>
-      <ScrollReveal><Contact /></ScrollReveal>
+      <BentoGrid />
+      <Skills />
+      <Experience />
+      <Achievements />
+      <Contact />
 
       <Footer />
     </div>
